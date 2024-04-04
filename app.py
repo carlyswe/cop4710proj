@@ -1,8 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import mysql.connector
 import mysql
 #pip install mysql-connector or use pip3 if error occurs
-
 
 app = Flask(__name__)
 
@@ -23,13 +22,18 @@ def database():
         database = "realtorsite")
 
 
-
-@app.route('/addlisting', methods = ['POST'])
+@app.route('/addlisting', methods = ['POST', 'GET'])
 def addlisting():
-    con = database()
-    cur = con.cursor()
+    if request.method == 'POST':
+        try:
+            con = database()
+            cur = con.cursor()
 
-    cur.execute()
+            cur.execute()
+        except:
+            print("error lol")
+
+    return render_template("addlisting.html")
 
 
 if __name__ == '__main__':
