@@ -26,14 +26,42 @@ def database():
 def addlisting():
     if request.method == 'POST':
         try:
+
+            price = request.form['price']
+            sqft = request.form['sqft']
+            numbed = request.form['numbeds']
+            numfullbaths = request.form['numfullbaths']
+            numhalfbaths = request.form['numhalfbaths']
+            yearbuilt = request.form['yearbuilt']
+            pricepersqft = request.form['pricepersqft']
+            photourl = request.form['photourl']
+            street = request.form['street']
+            city = request.form['city']
+            zipcode = request.form['zipcode']
+            unit = request.form['unit']
+
+            #what ab listing id???
+
             con = database()
             cur = con.cursor()
 
+            query = 'INSERT INTO Homes ()'
+
+
             cur.execute()
+
+            con.close()
         except:
             print("error lol")
 
     return render_template("addlisting.html")
+
+@app.route('/viewlistings', methods = ['POST', 'GET'])
+def viewListings():
+
+
+    return render_template("viewlistings.html")
+
 
 
 if __name__ == '__main__':
