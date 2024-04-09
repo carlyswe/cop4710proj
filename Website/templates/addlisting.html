@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <h1>Add a Listing </h1>
+        <form action = "{{ url_for('addlisting') }}" method = "POST">
+            Price: <br>
+            <input type = "number" name = "price" /><br>
+            Total sqft: <br>
+            <input type = "number" name = "sqft" /><br>
+            # Bedrooms: <br>
+            <input type = "number" name = "numbeds" /><br>
+            # Full Baths: <br>
+            <input type = "number" name = "numfullbaths" /><br>
+            # Half Baths: <br>
+            <input type = "number" name = "numhalfbaths" /><br>
+            Year Built: <br>
+            <input type = "number" name = "yearbuilt" /><br>
+            Style: <br>
+            <input type = "text" name = "style" /><br>
+            Price per sqft: <br>
+            <input type = "number" name = "pricepersqft" /><br>
+            Street: <br>
+            <input type = "text" name = "street" /><br>
+            City: <br>
+            <input type = "text" name = "city" /><br>
+            Unit: <br>
+            <input type = "text" name = "unit" /><br>
+            Zip Code: <br>
+            <input type = "number"  name = "zipcode" /><br>
+
+            Photo url: <br>
+            <input type = "url" name = "photourl" /><br>
+
+
+
+            <input type = "submit" value = "submit" /><br>
+        </form>
+    <h2><a href = "/">Back to home</a></h2>
+    </body>
+</html>
