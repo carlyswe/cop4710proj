@@ -21,6 +21,8 @@ def database():
         passwd = password,
         database = "realtorsite")
 
+    return db
+
 
 @app.route('/addlisting', methods = ['POST', 'GET'])
 def addlisting():
@@ -61,8 +63,14 @@ def addlisting():
 @app.route('/viewlistings', methods = ['POST', 'GET'])
 def viewListings():
 
+    con = database()
 
-    return render_template("viewlistings.html")
+    cur = con.cursor(dictionary = True)
+
+    cur.execute('SELECT * FROM Homes')
+    rows = cur.fetchall()
+
+    return render_template("viewlistings.html", rows = rows)
 
 
 
