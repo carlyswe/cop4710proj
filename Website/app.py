@@ -39,16 +39,18 @@ def addlisting():
             city = request.form['city']
             zipcode = request.form['zipcode']
             unit = request.form['unit']
+            style = request.form['style']
 
-            #what ab listing id???
+            #what ab listing id when adding??
 
             con = database()
             cur = con.cursor()
 
-            query = 'INSERT INTO Homes ()'
+            query = 'INSERT INTO Homes (beds, full_baths, half_baths, sqft, year_built, style, street, unit, city, ZipCode, price, photo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
+            vals = (numbed, numfullbaths, numhalfbaths, sqft, yearbuilt, style, street, unit, city, zipcode, price, photourl)
 
-            cur.execute()
+            cur.execute(query, vals)
 
             con.close()
         except:
