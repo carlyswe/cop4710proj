@@ -28,77 +28,97 @@
                 <h1>Add a Listing </h1>
             </div>
 
-            <div class="form">
-                <form action = "{{ url_for('addlisting') }}" method = "POST">
-                    <div>
-                        <p>Price:</p>
-                        <input type = "number" name = "price" />
-                    </div>
+            <div class="form-wrapper">
+                <div class="form">
+                    <form action = "{{ url_for('addlisting') }}" method = "POST">
+                        <div>
+                            <p>Price:</p>
+                            <input type = "number" name = "price" />
+                        </div>
 
-                    <div>
-                        <p>Total sqft:</p>
-                        <input type = "number" name = "sqft" />
-                    </div>
+                        <div>
+                            <p>Total sqft:</p>
+                            <input type = "number" name = "sqft" />
+                        </div>
+                        
+                        <div>
+                            <p># Bedrooms:</p>
+                            <input type = "number" name = "numbeds" />
+                        </div>
                     
-                    <div>
-                        <p># Bedrooms:</p>
-                        <input type = "number" name = "numbeds" />
-                    </div>
-                
-                    <div>
-                        <p># Full Baths:</p>
-                        <input type = "number" name = "numfullbaths" />
-                    </div>
-                    
-                    <div>
-                        <p># Half Baths:</p>
-                        <input type = "number" name = "numhalfbaths" />
-                    </div>
+                        <div>
+                            <p># Full Baths:</p>
+                            <input type = "number" name = "numfullbaths" />
+                        </div>
+                        
+                        <div>
+                            <p># Half Baths:</p>
+                            <input type = "number" name = "numhalfbaths" />
+                        </div>
 
-                    <div>
-                        <p>Year Built:</p>
-                        <input type = "number" name = "yearbuilt" />
-                    </div>
+                        <div>
+                            <p>Year Built:</p>
+                            <input type = "number" name = "yearbuilt" />
+                        </div>
 
-                    <div>
-                        <p>Style: </p>
-                        <input type = "text" name = "style" />
-                    </div>
+                        <div>
+                            <p>Style: </p>
+                            <input type = "text" name = "style" />
+                        </div>
 
-                    <div>
-                        <p>Price Per Sqft:</p>
-                        <input type = "number" name = "pricepersqft" />
-                    </div>
+                        <div>
+                            <p>Price Per Sqft:</p>
+                            <input type = "number" name = "pricepersqft" />
+                        </div>
 
-                    <div>
-                        <p>Street:</p>
-                        <input type = "text" name = "street" />
-                    </div>
+                        <div>
+                            <p>Street:</p>
+                            <input type = "text" name = "street" />
+                        </div>
 
-                    <div>
-                        <p>City:</p>
-                        <input type = "text" name = "city" />
-                    </div>
+                        <div>
+                            <p>City:</p>
+                            <input type = "text" name = "city" />
+                        </div>
 
-                    <div>
-                        <p>Unit:</p>
-                        <input type = "text" name = "unit" />
-                    </div>
+                        <div>
+                            <p>Unit:</p>
+                            <input type = "text" name = "unit" />
+                        </div>
 
-                    <div>
-                        <p>Zip Code:</p>
-                        <input type = "number"  name = "zipcode" />
-                    </div>
-    
-                    <div>
-                        <p>Photo URL:</p>
-                        <input type = "url" name = "photourl" />
-                    </div>
-                    
-                    <div>
-                        <input type = "submit" value = "submit" />
-                    </div>
-                </form>
+                        <div>
+                            <p>Zip Code:</p>
+                            <input type = "number"  name = "zipcode" />
+                        </div>
+        
+                        <div>
+                            <p>Photo URL:</p>
+                            <input type = "url" name = "photourl" />
+                        </div>
+                        
+                        <div class="submit">
+                            <input class="submit-button" type = "submit" value = "Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="delete-header">
+                <h1>Delete a Listing</h1>
+            </div>
+
+            <div class="form-wrapper">
+                <div class="form">
+                    <form action="" method="POST">
+                        <div>
+                            <p>Listing ID:</p>
+                            <input type = "number" name = "price" />
+                        </div>
+                        <div class="submit">
+                            <input class="submit-button" type = "submit" value = "Submit" />
+                        </div>
+                    </form>
+                </div>
             </div>
             
         </body>

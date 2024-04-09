@@ -619,24 +619,63 @@
 
 .form{
     padding-top: 50px;
-    display: block;
     margin: auto;
+    width: 60%;
+    
 }
 .form div{
     font-size: calc(0.5vw + 0.5vh + 1vmin);
     font-family: Montserrat;
     display: flex;
-    justify-content: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .form div > input {
     background-color: var(--tan);
     border-color: var(--earth);
-    width: 30%;
+    width: 70%;
+    
 }
 
-.form div > p {
-    float: left;
-    clear: left;
+.form-wrapper{
+    width: 100%; 
+}
+
+.submit{
+    width: 100%;
+    height: 120px !important;
+}
+
+.submit-button{
+    width: 50%;
+    max-width: 240px;
+    height: 60px;
+    border-radius: 5px;
+    font-family: Montserrat;
+    margin: auto;
+    font-size: calc(0.8vw + 0.8vh + 1vmin);
+    color: var(--earth);
+    background-color: var(--sun) !important;
+    text-decoration: underline solid;
+    border: 0;
+}
+
+.submit-button:hover{
+    cursor: pointer; 
+}
+
+.delete-header{
+    width:100%;
+    background-color: var(--tan);
+}
+
+.delete-header h1{
+    font-size: calc(1.2vw + 1.2vh + 1vmin);
+    width: 50%;
+    height: 100px;
+    vertical-align:center;
+    line-height: 100px;
+    margin: auto;
+    text-align: center;
 }
