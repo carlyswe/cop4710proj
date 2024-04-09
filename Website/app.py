@@ -6,9 +6,9 @@ import mysql
 app = Flask(__name__)
 
 #homepage
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template ('index.html')
+    return render_template ('Index.html')
 
 #this is connects us to database
 def database():
