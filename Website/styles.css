@@ -273,11 +273,13 @@
     margin:auto;
     background-color: var(--tan);
     width: 60vw;
+    min-width: 600px;
     height:600px;
     margin-top: 120px;
 }
 
 .house-photo{
+    min-width: 500px;
     margin-left:auto;
     border-radius: 5px;
     margin-right: auto;
@@ -353,12 +355,105 @@
     width: 80%;
     margin: auto;
     padding: 10px;
+    padding-left: 0;
 }
 
 .interior-info{
+    font-size: calc(0.6vw + 0.6vh + 1vmin);
+    padding: 50px;
     width: 100%;
     height: auto; 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
     background-color: var(--beige);
+}
+
+.bed-bath, .square-feet, .exterior, .other, .property{
+    width: 80%;
+    text-align: left;
+    margin: auto;
+}
+
+.schools{
+    background-color: var(--tan);
+    width:100%;
+    color:var(--earth);
+    font-size: calc(1.0vw + 1.0vh + 1vmin);
+    font-family: 'Roboto Serif';
+}
+
+.schools p{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    padding-left: 0;
+}
+
+.ratings{
+    font-family:Montserrat;
+    width: 100%;
+    background-color: var(--beige);
+}
+
+.ratings p{
+    margin: auto; 
+    width: 80%;
+}
+
+.ratings-p{
+    font-size: calc(0.7vw + 0.7vh + 1vmin);
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.school-name{
+    display: block;
+    width: 80%; 
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.grade{
+    display: grid;
+    grid-template-columns: min-content auto;
+    width: 50%;
+    padding-bottom: 20px;
+    font-size: calc(0.7vw + 0.7vh + 1vmin);
+}
+
+.letter{
+    text-align: center;
+    vertical-align: center;
+    min-width: 80px;
+    font-size: calc(1.1vw + 1.1vh + 1vmin);
+    line-height: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-color: var(--sun);
+}
+
+.district{
+    display: flex;
+    width: 80%;
+    background-color: var(--beige);
+}
+
+.district img{
+    width: 120px;
+    height: auto;
+    margin: auto;
+}
+
+.district-info{
+    font-size: calc(1.1vw + 1.1vh + 1vmin);
+    display: block; 
+    margin: auto;
+    min-width: 200px;
+
+}
+
+.school-info{
+    display: flex;
 }
 
 
