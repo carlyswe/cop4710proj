@@ -35,14 +35,19 @@ def deletelisting():
             cur = con.cursor()
 
 
-            query = "DELETE FROM Homes WHERE listingID = %s "
+            query = "DELETE FROM Homes WHERE listingID = %s"
 
-            cur.execute(query,ID)
+            cur.execute(query,(ID,))
 
             msg = "Listing has been sucessfully deleted."
 
 
-        except:
+            con.commit()
+
+            con.close()
+
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))
             msg = "Unable to delete listing. Please check Listing ID."
             print("error")
     return render_template('deletelisting.html', msg = msg)
@@ -59,21 +64,23 @@ def addlisting():
             numbed = request.form['numbeds']
             numfullbaths = request.form['numfullbaths']
             numhalfbaths = request.form['numhalfbaths']
-            yearbuilt = request.form['yearbuilt']
-            pricepersqft = request.form['pricepersqft']
-            photourl = request.form['photourl']
+            yearbuilt = request.form['yearbuilt'] or None
+            #pricepersqft = request.form['pricepersqft']
+            photourl = request.form['photourl'] or None
             street = request.form['street']
             city = request.form['city']
             zipcode = request.form['zipcode']
-            unit = request.form['unit']
-            style = request.form['style']
+            unit = request.form['unit'] or None
+            style = request.form['style'] or None
+
+            print("here")
 
             #what ab listing id when adding??
 
             con = database()
             cur = con.cursor()
 
-            query = 'INSERT INTO Homes (beds, full_baths, half_baths, sqft, year_built, style, street, unit, city, ZipCode, price, photo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+            query = 'INSERT INTO Homes (beds, full_baths, half_baths, sqft, year_built, style, street, unit, city, ZipCode, price, photo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
             vals = (numbed, numfullbaths, numhalfbaths, sqft, yearbuilt, style, street, unit, city, zipcode, price, photourl)
 
@@ -83,8 +90,12 @@ def addlisting():
             #redirect to view it as a listing but need to pass listing id for buildable url
             #return redirect(/house, )
 
+            con.commit()
+
             con.close()
-        except:
+
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))
             msg = "Unable to add listing."
             print("error")
 
@@ -106,7 +117,7 @@ def viewListings():
 @app.route('/house/<listingID>', methods = ['POST', 'GET'])
 def house(listingID):
     con = database()
-    cur = con.cursor(dictionay = True)
+    cur = con.cursor(dictionary = True)
 
     query = "SELECT * FROM House WHERE listingID = %s"
 
