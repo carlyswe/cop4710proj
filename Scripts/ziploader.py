@@ -3,11 +3,11 @@ import mysql.connector
 
 # Establish a connection to the MySQL server
 connection = mysql.connector.connect(
-    host='',
-    user='',
-    password='',
-    database=''
-)
+        host='db-newhomes.c9weqm4g04ms.usa-east-2.rds.amazonaws.com',
+        user='admin',
+        password='cop4710!',
+        database='realtorsite'
+    )
 
 # Create a cursor object to execute queries
 cursor = connection.cursor()
@@ -19,12 +19,12 @@ with open(r'C:\Users\dunlo\PycharmProjects\realestateproj\datatbl\flzips.csv', '
 
     # Iterate over each row in the CSV file
     for row in csv_reader:
-        zip_code = row[0].strip()[:10]  # Truncate zip code to first 10 characters
+        zip_code = row[0].strip()[:5]  # Truncate zip code to first 5 characters
         city = row[2].strip()
         county = row[4].strip()
 
-        # Skip rows with empty or blank zip codes
-        if not zip_code:
+        # Skip rows with empty, blank, or non-numeric zip codes
+        if not zip_code or not zip_code.isdigit():
             continue
 
         # Check if the zip code already exists in the database
@@ -39,8 +39,12 @@ with open(r'C:\Users\dunlo\PycharmProjects\realestateproj\datatbl\flzips.csv', '
         # Prepare the SQL INSERT statement
         query = "INSERT INTO ZipCodes (ZipCode, City, County) VALUES (%s, %s, %s)"
 
-        # Execute the INSERT statement
-        cursor.execute(query, (zip_code, city, county))
+        try:
+            # Execute the INSERT statement
+            cursor.execute(query, (zip_code, city, county))
+        except mysql.connector.errors.DatabaseError as err:
+            print(f"Error inserting record: {err}")
+            continue
 
 # Commit the changes and close the cursor and connection
 connection.commit()
