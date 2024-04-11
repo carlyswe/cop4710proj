@@ -36,7 +36,7 @@
                     <form action = "{{ url_for('addlisting') }}" method = "POST">
                         <div>
                             <p>Price:</p>
-                            <input type = "number" name = "price" />
+                            <input type = "number" name = "price" required title="Please enter a price"/>
                         </div>
 
                         <div>
@@ -46,17 +46,17 @@
                         
                         <div>
                             <p># Bedrooms:</p>
-                            <input type = "number" name = "numbeds" />
+                            <input type = "number" name = "numbeds" required/>
                         </div>
                     
                         <div>
                             <p># Full Baths:</p>
-                            <input type = "number" name = "numfullbaths" />
+                            <input type = "number" name = "numfullbaths" required/>
                         </div>
                         
                         <div>
                             <p># Half Baths:</p>
-                            <input type = "number" name = "numhalfbaths" />
+                            <input type = "number" name = "numhalfbaths" required/>
                         </div>
 
                         <div>
@@ -70,18 +70,13 @@
                         </div>
 
                         <div>
-                            <p>Price Per Sqft:</p>
-                            <input type = "number" name = "pricepersqft" />
-                        </div>
-
-                        <div>
                             <p>Street:</p>
-                            <input type = "text" name = "street" />
+                            <input type = "text" name = "street" required/>
                         </div>
 
                         <div>
                             <p>City:</p>
-                            <input type = "text" name = "city" />
+                            <input type = "text" name = "city" required/>
                         </div>
 
                         <div>
@@ -91,7 +86,7 @@
 
                         <div>
                             <p>Zip Code:</p>
-                            <input type = "number"  name = "zipcode" />
+                            <input type = "number"  name = "zipcode" required/>
                         </div>
         
                         <div>

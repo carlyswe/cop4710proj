@@ -1,8 +1,9 @@
 CREATE DATABASE IF NOT EXISTS realtorsite; 
 USE realtorsite; 
 
-DROP TABLE IF EXISTS ZipCodes; 
+
 DROP TABLE IF EXISTS Homes;  
+DROP TABLE IF EXISTS ZipCodes; 
 DROP TABLE IF EXISTS Cities; 
 DROP TABLE IF EXISTS Schools;
 DROP TABLE IF EXISTS StatisticsOf; 
@@ -27,10 +28,10 @@ CREATE TABLE Schools(
 
 CREATE TABLE CrimeStatistics( 
 	statisticsID VARCHAR(64) PRIMARY KEY, 
-    CountyName TEXT, 
+    CountyName VARCHAR(200), 
 	totalCrimeIndex INT NOT NULL, 
     Total_Arrests DECIMAL(10,2),
-    Population TEXT, 
+    Population INT, 
 	Burglary DECIMAL(10,2),
     Larceny DECIMAL(10,2),
     Motor_Vehicle_Theft DECIMAL(10,2),
@@ -69,25 +70,24 @@ CREATE TABLE StatisticsOf( #lookup table to find a county's crime statistic id
 -- Lookup Table
 CREATE TABLE ZipCodes (
     ZipCode INT PRIMARY KEY,
-    City TEXT,
-    County TEXT 
+    City VARCHAR(200),
+    County VARCHAR(200) 
 )Engine = InnoDB;
 
 CREATE TABLE Homes( 
 	listingID VARCHAR(64) PRIMARY KEY, 
 	ZipCode INT NOT NULL, 
-    property_url TEXT,
-    style TEXT,
-    street TEXT, 
-    unit TEXT, 
+    property_url VARCHAR(250) DEFAULT 'www.google.com',
+    style VARCHAR(200),
+    street VARCHAR(250), 
+    unit VARCHAR(200), 
     city VARCHAR(64),
-    zip_code TEXT, 
-    beds INT, 
-    full_baths INT, 
-    half_baths INT, 
-    sqft INT, 
-    year_built INT, 
-	price float NOT NULL, 
+    beds INT DEFAULT 0, 
+    full_baths INT DEFAULT 0, 
+    half_baths INT DEFAULT 0, 
+    sqft INT DEFAULT 2000, 
+    year_built INT DEFAULT 2010, 
+	price float DEFAULT 0, 
 	photo BLOB, 
     FOREIGN KEY (ZipCode) REFERENCES ZipCodes(ZipCode)
     on update cascade
