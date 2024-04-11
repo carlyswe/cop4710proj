@@ -669,6 +669,16 @@
     cursor: pointer; 
 }
 
+.message{
+    width: 100%;
+}
+
+.msg{
+    text-align: center;
+    font-size: calc(0.8vw + 0.8vh + 1vmin);
+    font-family: Montserrat;
+}
+
 /**********************************************************
                 D E L E T E  L I S T I N G S
 **********************************************************/
