@@ -1,4 +1,171 @@
-<html>
-    <h1>All Homes in Florida:</h1>
+<!DOCTYPE html>
+    <html>
+        <head> 
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Real Estate Site | Add a Listing</title>
+            <meta name="description" content="Find homes within safe counties in Florida.">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="../static/css/styles.css"/>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">  
+        </head>
 
-</html>
+        <nav class="navbar">
+            <a class="logo nav-options" href="Index.html">Logo</a>
+            <a class="nav-options" href="www.google.com">crime map</a>
+            <a class="nav-options" href="www.google.com">buy</a>
+            <a class="nav-options" href="www.google.com">sell</a>
+            <a class="join nav-options" href="www.google.com">join / signup</a>
+        </nav>
+
+        <body class="wrapper-home">
+            <div class="map">
+                <img src="/Website/static/images/map-placeholder.png"/>
+            </div>
+
+            <div class="filter-header">
+                <h1>Filter Options</h1>
+            </div>
+
+            
+            <!-- No idea how to do the filtering formatting. I just made the buttons at least -->
+            <!-- Ideally, the button temporary text should get replaced with the filter option once selected. -->
+            <div class="filter-wrapper">
+                <div class="filter-options">
+                    <div class="dropdown">
+                        <button class="drop">Counties</button>
+                        <div class="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="drop">Cities</button>
+                        <div class="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="drop">Crime Rating</button>
+                        <div class="dropdown-content">
+                          <a href="#">A</a>
+                          <a href="#">B</a>
+                          <a href="#">C</a>
+                          <a href="#">D</a>
+                          <a href="#">E</a>
+                          <a href="#">F</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="drop">School Grade</button>
+                        <div class="dropdown-content">
+                            <a href="#">A</a>
+                            <a href="#">B</a>
+                            <a href="#">C</a>
+                            <a href="#">D</a>
+                            <a href="#">E</a>
+                            <a href="#">F</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="generate">
+                <button>Generate Listings</button>
+            </div>
+
+            <div class="houses">
+                <div class="first-row">
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+    
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+    
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg active'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+                </div>
+                
+
+                <div class="second-row">
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg active'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+    
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg active'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+    
+                    <a href="house.html" class="house-option">
+                        <img src="/Website/static/images/homepage-house.jpg" alt="house"/>
+                        <div>
+                            <p class="view-price">$200,000</p>
+                            <ion-icon name="heart">
+                                <div class='red-bg active'></div>
+                            </ion-icon>
+                        </div>
+                        <p class="view-address">123 Pensacola St</p>
+                    </a>
+                </div>
+                
+            </div>
+            
+            
+
+
+        </body>
+
+        <script src="main.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </html>
+

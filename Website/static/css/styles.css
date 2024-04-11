@@ -599,8 +599,10 @@
 
 
 /**********************************************************
-                A D D  L I S T I N GS
+                A D D  L I S T I N G S
 **********************************************************/
+
+
 .listing-header{
     background-color:var(--tan); 
     width: 100%;
@@ -645,6 +647,7 @@
 .submit{
     width: 100%;
     height: 120px !important;
+    margin-bottom: 50px;
 }
 
 .submit-button{
@@ -665,6 +668,10 @@
     cursor: pointer; 
 }
 
+/**********************************************************
+                D E L E T E  L I S T I N G S
+**********************************************************/
+
 .delete-header{
     width:100%;
     background-color: var(--tan);
@@ -679,3 +686,165 @@
     margin: auto;
     text-align: center;
 }
+
+.delete{
+    height: 70vh;
+}
+
+
+/**********************************************************
+                V I E W  L I S T I N G S
+**********************************************************/
+
+/** TEMPORARY MAP PLACEHOLDER **/
+.map img{
+    width: 100%; 
+    height: 400px;
+    object-fit: cover;
+}
+
+.filter-header{
+    width: 100%;
+    background-color: var(--tan);
+    color: var(--earth);
+    height: 100px;
+    vertical-align: center;
+    line-height:100px;
+}
+
+.filter-header h1{
+    font-family: 'Roboto Serif';
+    font-size: calc(1.2vw + 1.2vh + 1vmin);
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.drop {
+    background-color: var(--sun);
+    color: var(--earth);
+    padding: 16px;
+    min-width: 200px;
+    font-size: calc(0.5vw + 0.5vh + 1vmin);
+    font-family: Montserrat;
+    border: 1px var(--earth) solid;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--tan);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: var(--earth);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color:#ffcd6a;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .drop {
+    background-color:#ffcd6a;
+  }
+
+  .filter-options{
+    width: 70%;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    
+  }
+
+  .filter-wrapper{
+    width: 100%;
+  }
+
+  .generate{
+    width: 100%;
+    display: flex;
+  }
+
+  .generate button{
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    width: 300px;
+    height: 60px;
+    border-radius: 5px;
+    border-color :var(--earth);
+    background-color: var(--sun);
+    border-width: 1px;
+    color: var(--earth);
+    font-size: calc(0.5vw + 0.5vh + 1vmin);
+    font-family: Montserrat;
+  }
+
+  .generate button:hover{
+    cursor: pointer; 
+  }
+
+
+  .first-row, .second-row{
+    display: flex;
+
+  }
+
+  .first-row{
+    margin-top: 100px;
+  }
+
+  .houses{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 100px;
+    color: var(--earth);
+    font-size: calc(1.3vw + 1.3vh + 1vmin);
+  }
+
+  .house-option{
+    padding: 20px;
+    margin: auto;
+    text-decoration: none;
+    color: var(--earth);
+    margin-bottom: 50px;
+    background-color: var(--tan);
+  }
+
+  .house-option img{
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .house-option div{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  ion-icon{
+    fill:transparent;
+    stroke:var(--earth);
+    stroke-width:30;
+  }
+  
+  
