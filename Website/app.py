@@ -24,6 +24,31 @@ def database():
     return db
 
 
+@app.route('/deletelisting', methods = ['POST', 'GET'])
+def deletelisting():
+    msg = ""
+    if request.method == 'POST':
+        try:
+            ID = request.form['listingID']
+
+            con = database()
+            cur = con.cursor()
+
+
+            query = "DELETE FROM Homes WHERE listingID = %s "
+
+            cur.execute(query,ID)
+
+            msg = "Listing has been sucessfully deleted."
+
+
+
+        except:
+            msg = "Unable to delete listing. Please check Listing ID."
+            print("error")
+    return render_template('deletelisting.html', msg = msg)
+
+
 @app.route('/addlisting', methods = ['POST', 'GET'])
 def addlisting():
     if request.method == 'POST':
@@ -56,6 +81,7 @@ def addlisting():
 
             con.close()
         except:
+
             print("error lol")
 
     return render_template('addlisting.html')
