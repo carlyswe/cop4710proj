@@ -58,7 +58,7 @@ def addlisting():
         except:
             print("error lol")
 
-    return render_template("addlisting.html")
+    return render_template('addlisting.html')
 
 @app.route('/viewlistings', methods = ['POST', 'GET'])
 def viewListings():
