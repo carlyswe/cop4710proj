@@ -28,15 +28,18 @@
                 <h1>Add a Listing </h1>
             </div>
 
-
-             {{ msg }}
+            <div class="message">
+                <div class="msg">
+                    {{ msg }}
+                </div>
+            </div>
 
             <div class="form-wrapper">
                 <div class="form">
                     <form action = "{{ url_for('addlisting') }}" method = "POST">
                         <div>
                             <p>Price:</p>
-                            <input type = "number" name = "price" required title="Please enter a price"/>
+                            <input type = "number" name = "price" required/>
                         </div>
 
                         <div>

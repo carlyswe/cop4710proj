@@ -28,12 +28,18 @@
                 <h1>Delete a Listing</h1>
             </div>
 
+            <div class="message">
+                <div class="msg">
+                    {{ msg }}
+                </div>
+            </div>
+
             <div class="form-wrapper">
                 <div class="form delete">
                     <form action="" method="POST">
                         <div>
                             <p>Listing ID:</p>
-                            <input type = "number" name = "listingID" />
+                            <input type = "number" name = "listingID" required/>
                         </div>
                         <div class="submit">
                             <input class="submit-button" type = "submit" value = "Submit" />
@@ -42,8 +48,6 @@
                 </div>
             </div> 
         </body>
-
-        <body> {{ msg }}</body>
 
         <footer class="footer">
             <div class="footer-text">
