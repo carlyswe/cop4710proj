@@ -16,10 +16,10 @@
         </head>
 
         <nav class="navbar">
-            <a class="logo nav-options" href="Index.html">Logo</a>
+            <a class="logo nav-options" href="/">Logo</a>
             <a class="nav-options" href="www.google.com">crime map</a>
-            <a class="nav-options" href="viewlistings.html">buy</a>
-            <a class="nav-options" href="addlisting.html">sell</a>
+            <a class="nav-options" href="/viewlistings">buy</a>
+            <a class="nav-options" href="/addlisting">sell</a>
             <a class="join nav-options" href="www.google.com">join / signup</a>
         </nav>
 
@@ -33,7 +33,7 @@
                     <form action="" method="POST">
                         <div>
                             <p>Listing ID:</p>
-                            <input type = "number" name = "price" />
+                            <input type = "number" name = "listingID" />
                         </div>
                         <div class="submit">
                             <input class="submit-button" type = "submit" value = "Submit" />
@@ -42,6 +42,8 @@
                 </div>
             </div> 
         </body>
+
+        <body> {{ msg }}</body>
 
         <footer class="footer">
             <div class="footer-text">

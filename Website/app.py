@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import mysql.connector
 import mysql
 #pip install mysql-connector or use pip3 if error occurs
@@ -23,9 +23,34 @@ def database():
 
     return db
 
+#delete listing function
+@app.route('/deletelisting', methods = ['POST', 'GET'])
+def deletelisting():
+    msg = ""
+    if request.method == 'POST':
+        try:
+            ID = request.form['listingID']
+
+            con = database()
+            cur = con.cursor()
+
+
+            query = "DELETE FROM Homes WHERE listingID = %s "
+
+            cur.execute(query,ID)
+
+            msg = "Listing has been sucessfully deleted."
+
+
+        except:
+            msg = "Unable to delete listing. Please check Listing ID."
+            print("error")
+    return render_template('deletelisting.html', msg = msg)
+
 
 @app.route('/addlisting', methods = ['POST', 'GET'])
 def addlisting():
+    msg = ""
     if request.method == 'POST':
         try:
 
@@ -54,11 +79,16 @@ def addlisting():
 
             cur.execute(query, vals)
 
+            msg = "Home Added Successfully."
+            #redirect to view it as a listing but need to pass listing id for buildable url
+            #return redirect(/house, )
+
             con.close()
         except:
-            print("error lol")
+            msg = "Unable to add listing."
+            print("error")
 
-    return render_template("addlisting.html")
+    return render_template('addlisting.html', msg = msg)
 
 @app.route('/viewlistings', methods = ['POST', 'GET'])
 def viewListings():
@@ -72,6 +102,19 @@ def viewListings():
 
     return render_template("viewlistings.html", rows = rows)
 
+
+@app.route('/house/<listingID>', methods = ['POST', 'GET'])
+def house(listingID):
+    con = database()
+    cur = con.cursor(dictionay = True)
+
+    query = "SELECT * FROM House WHERE listingID = %s"
+
+    cur.execute(query, listingID)
+
+    houseinfo = cur.fetchall()
+
+    return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
 
 
 if __name__ == '__main__':

@@ -18,8 +18,8 @@
         <nav class="navbar">
             <a class="logo nav-options" href="www.google.com">Logo</a>
             <a class="nav-options" href="www.google.com">crime map</a>
-            <a class="nav-options" href="viewlistings.html">buy</a>
-            <a class="nav-options" href="addlisting.html">sell</a>
+            <a class="nav-options" href="/viewlistings">buy</a>
+            <a class="nav-options" href="/addlisting">sell</a>
             <a class="join nav-options" href="www.google.com">join / signup</a>
         </nav>
 
@@ -65,14 +65,15 @@
                 <div class="interior-info">
                     <div class="bed-bath">
                         <ul>Bedrooms and Bathrooms</ul>
-                        <li>Bedrooms: </li>
+                        <li>Bedrooms: </li> {{ houseinfo["beds"]}}
                         <li>Bathrooms: </li>
-                        <li>Full Bathrooms: </li>
+                        <li>Full Bathrooms: </li> {{ houseinfo["full_baths"] }}
+                        <li>Half Bathrooms: </li> {{ houseinfo["half_baths"] }}
                     </div>
             
                     <div class="square-feet">
                         <ul>Square Feet</ul>
-                        <li>1,500 sqft</li>
+                        <li>{{ houseinfo["sqft"] }}</li>
                     </div>
 
                     <div class="exterior">
@@ -83,14 +84,14 @@
 
                     <div class="other">
                         <ul>Other</ul>
-                        <li>Year Built: </li>
+                        <li>Year Built: </li> {{ houseinfo["year_built"] }}
                         <li>HOA Fee: </li>
                         <li>Price Per Sqft: </li>
                     </div>
 
                     <div class="property">
                         <ul>Property URL</ul>
-                        <li>www.google.com</li>
+                        <li>{{ houseinfo["property_url"] }}/li>
                     </div>
                 </div>
             </div>
