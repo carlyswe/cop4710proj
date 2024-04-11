@@ -85,79 +85,21 @@
                 <button>Generate Listings</button>
             </div>
 
+            {%for row in rows%}
             <div class="houses">
                 <div class="first-row">
-                    <a href="house.html" class="house-option">
+                    <a href="{{url_for('house',listingID=row['listingID'])}}" class="house-option">
                         <img src="/static/images/homepage-house.jpg" alt="house"/>
                         <div>
-                            <p class="view-price">$200,000</p>
+                            <p class="view-price"> {{ row["price"] }}</p>
                             <ion-icon name="heart">
                                 <div class='red-bg'></div>
                             </ion-icon>
                         </div>
-                        <p class="view-address">123 Pensacola St</p>
+                        <p class="view-address">{{ row["street"] }}</p>
                     </a>
-    
-                    <a href="house.html" class="house-option">
-                        <img src="/static/images/homepage-house.jpg" alt="house"/>
-                        <div>
-                            <p class="view-price">$200,000</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg'></div>
-                            </ion-icon>
-                        </div>
-                        <p class="view-address">123 Pensacola St</p>
-                    </a>
-    
-                    <a href="house.html" class="house-option">
-                        <img src="/static/images/homepage-house.jpg" alt="house"/>
-                        <div>
-                            <p class="view-price">$200,000</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg active'></div>
-                            </ion-icon>
-                        </div>
-                        <p class="view-address">123 Pensacola St</p>
-                    </a>
-                </div>
-                
-
-                <div class="second-row">
-                    <a href="house.html" class="house-option">
-                        <img src="/static/images/homepage-house.jpg" alt="house"/>
-                        <div>
-                            <p class="view-price">$200,000</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg active'></div>
-                            </ion-icon>
-                        </div>
-                        <p class="view-address">123 Pensacola St</p>
-                    </a>
-    
-                    <a href="house.html" class="house-option">
-                        <img src="/static/images/homepage-house.jpg" alt="house"/>
-                        <div>
-                            <p class="view-price">$200,000</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg active'></div>
-                            </ion-icon>
-                        </div>
-                        <p class="view-address">123 Pensacola St</p>
-                    </a>
-    
-                    <a href="house.html" class="house-option">
-                        <img src="/static/images/homepage-house.jpg" alt="house"/>
-                        <div>
-                            <p class="view-price">$200,000</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg active'></div>
-                            </ion-icon>
-                        </div>
-                        <p class="view-address">123 Pensacola St</p>
-                    </a>
-                </div>
-                
             </div>
+            {%endfor%}
             
             
 
