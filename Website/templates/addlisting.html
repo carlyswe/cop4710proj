@@ -28,6 +28,9 @@
                 <h1>Add a Listing </h1>
             </div>
 
+
+             {{ msg }}
+
             <div class="form-wrapper">
                 <div class="form">
                     <form action = "{{ url_for('addlisting') }}" method = "POST">
@@ -102,6 +105,8 @@
                     </form>
                 </div>
             </div>
+
+
 
         <footer class="footer">
             <div class="footer-text">
