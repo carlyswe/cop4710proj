@@ -119,11 +119,11 @@ def house(listingID):
     con = database()
     cur = con.cursor(dictionary = True)
 
-    query = "SELECT * FROM House WHERE listingID = %s"
+    query = "SELECT * FROM Homes WHERE listingID = %s"
 
-    cur.execute(query, listingID)
+    cur.execute(query, (listingID,))
 
-    houseinfo = cur.fetchall()
+    houseinfo = cur.fetchone()
 
     return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
 

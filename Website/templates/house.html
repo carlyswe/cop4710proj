@@ -29,19 +29,19 @@
                         <img class="house-photo"></img>
                         <div class="house-info">
                         <div>
-                            <h2 class="price">$200,000 </h2>
-                            <h2 class="address">123 Pensacola St</h2>
+                            <h2 class="price">${{ houseinfo["price"] }} </h2>
+                            <h2 class="address">{{houseinfo["street"]}} </h2>
                         </div>
                         <div>
-                            <h2 class="num-bed">3</h2>   
+                            <h2 class="num-bed">{{houseinfo["beds"] }}</h2>
                             <h2 class="bed">bed</h2> 
                         </div>
                         <div>
-                            <h2 class="num-bath">2</h2>
+                            <h2 class="num-bath">{{ houseinfo["full_baths"] }}</h2>
                             <h2 class="bath">bath</h2>
                         </div> 
                         <div>
-                            <h2 class="num-sqft">1,500</h2>
+                            <h2 class="num-sqft">{{ houseinfo["sqft"] }}</h2>
                             <h2 class="sqft">sqft</h2>
                         </div> 
                      </div>  
@@ -65,10 +65,9 @@
                 <div class="interior-info">
                     <div class="bed-bath">
                         <ul>Bedrooms and Bathrooms</ul>
-                        <li>Bedrooms: </li> {{ houseinfo["beds"]}}
-                        <li>Bathrooms: </li>
-                        <li>Full Bathrooms: </li> {{ houseinfo["full_baths"] }}
-                        <li>Half Bathrooms: </li> {{ houseinfo["half_baths"] }}
+                        <li>Bedrooms: {{ houseinfo["beds"]}} </li>
+                        <li>Full Bathrooms: {{ houseinfo["full_baths"] }}</li>
+                        <li>Half Bathrooms:  {{ houseinfo["half_baths"] }} </li>
                     </div>
             
                     <div class="square-feet">
@@ -84,7 +83,7 @@
 
                     <div class="other">
                         <ul>Other</ul>
-                        <li>Year Built: </li> {{ houseinfo["year_built"] }}
+                        <li>Year Built: {{ houseinfo["year_built"] }}</li>
                         <li>HOA Fee: </li>
                         <li>Price Per Sqft: </li>
                     </div>
@@ -119,7 +118,7 @@
                 </div>
     
                 <div class="district">
-                    <img src="/Website/static/images/school.png" alt="school-img"/>
+                    <img src="/static/images/school.png" alt="school-img"/>
                     <div class="district-info">
                         <p>School District: </p>
                         <p>Leon County</p>
