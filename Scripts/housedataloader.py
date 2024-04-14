@@ -1,10 +1,11 @@
 import csv
+import mysql
 import mysql.connector
 
 def process_csv_file(file_path):
     # Establish a connection to the MySQL database
     db = mysql.connector.connect(
-        host='db-newhomes.c9weqm4g04ms.usa-east-2.rds.amazonaws.com',
+        host='db-newhomes.c9weqm4g04ms.us-east-2.rds.amazonaws.com',
         user='admin',
         password='cop4710!',
         database='realtorsite'
@@ -50,11 +51,11 @@ def process_csv_file(file_path):
                     # Prepare the SQL query to insert or update the home
                     query = """
                         INSERT INTO Homes (
-                            listingID, ZipCode, property_url, style, street, unit, city,
+                             ZipCode, property_url, style, street, unit, city,
                             beds, full_baths, half_baths, sqft, year_built, price, photo
                         )
                         VALUES (
-                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
                         )
                         ON DUPLICATE KEY UPDATE
                             ZipCode = VALUES(ZipCode), property_url = VALUES(property_url),
@@ -66,7 +67,7 @@ def process_csv_file(file_path):
 
                     # Execute the SQL query with the row data
                     cursor.execute(query, (
-                        row['mls_id'], zip_code, row['property_url'], row['style'],
+                        zip_code, row['property_url'], row['style'],
                         row['street'], row['unit'], row['city'], beds, full_baths,
                         half_baths, sqft, year_built, price, row['primary_photo']
                     ))
@@ -77,14 +78,16 @@ def process_csv_file(file_path):
                     else:
                         print(f"Home updated (duplicate): {row['property_url']}")
 
+                    # Commit the changes to the database
+                    db.commit()
+
                 except mysql.connector.Error as error:
                     if error.errno == 1264:  # Out of range value for column 'price'
                         print(f"Skipping row due to out of range value for 'price': {row['property_url']}")
                     else:
                         raise error
 
-        # Commit the changes to the database
-        db.commit()
+
 
     except mysql.connector.Error as error:
         print(f"Error: {error}")
@@ -97,5 +100,5 @@ def process_csv_file(file_path):
             db.close()
 
 # Example usage
-process_csv_file(r'C:\Users\dunlo\PycharmProjects\realestateproj\scripts\HomeHarvest_Florida_20240327_232001_forsale.csv')
-process_csv_file(r'C:\Users\dunlo\PycharmProjects\realestateproj\scripts\HomeHarvest_Florida_20240327_213248_forrent.csv')
+process_csv_file('/Users/carlysweeney/Downloads/dataloading/Data/forsale.csv')
+process_csv_file('/Users/carlysweeney/Downloads/dataloading/Data/forrent.csv')

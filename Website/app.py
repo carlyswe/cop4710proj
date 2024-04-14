@@ -108,7 +108,7 @@ def viewListings():
 
     cur = con.cursor(dictionary = True)
 
-    cur.execute('SELECT * FROM Homes')
+    cur.execute('SELECT * FROM Homes LIMIT 6')
     rows = cur.fetchall()
 
     return render_template("viewlistings.html", rows = rows)
@@ -130,6 +130,16 @@ def house(listingID):
 
 
     return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
+
+
+@app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])
+def editlisting(listingID):
+    con = database()
+    con = con.cursor()
+
+
+
+
 
 
 if __name__ == '__main__':
