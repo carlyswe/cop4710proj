@@ -126,10 +126,38 @@ def house(listingID):
     houseinfo = cur.fetchone()
 
 
-    #format price to have commas
+    #query to get school data
 
 
-    return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
+    #join zipcodes to house where they match and then get the county then return all schools in that county and the grade
+
+    #getting the county based on home
+    cur.execute("SELECT County FROM ZipCodes JOIN Homes ON ZipCodes.ZipCode = Homes.ZipCode WHERE Homes.listingID = %s", (listingID,))
+    county = cur.fetchone()
+
+    print(county)
+
+    county = str(county["County"])
+
+    #get the district number
+    cur.execute("SELECT DistrictNumber, DistrictName FROM Counties WHERE DistrictName = %s", (county,))
+    districtinfo = cur.fetchone()
+    districtnum = int(districtinfo["DistrictNumber"])
+    districtname = str(districtinfo["DistrictName"])
+
+    print(districtnum)
+
+    #get school info
+    cur.execute("SELECT * FROM Schools WHERE DistrictNumber = %s", (districtnum,))
+    schools = cur.fetchall()
+
+
+    #query to get crime info
+
+
+    #join statistics on county name
+
+    return render_template("house.html", houseinfo=houseinfo, schools=schools, districtname=districtname, path='/house'+listingID)
 
 
 @app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])

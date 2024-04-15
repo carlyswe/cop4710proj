@@ -105,28 +105,26 @@
                 <p>Schools</p>
             </div>
 
+            {%for school in schools%}
             <div class="school-info">
                 <div class="ratings">
                     <p class="ratings-p">Ratings</p>
                     <div class="school-name">
                         <div class="grade">
-                            <p class="letter">A</p>
-                            <p>Leon High School</p>
-                        </div>
-    
-                        <div class="grade">
-                            <p class="letter">A</p>
-                            <p>Godby High School</p>
+                            <p class="letter">{{ school["Grade2022"] }}</p>
+                            <p>{{ school["SchoolName"] }}</p>
+                            <br>
                         </div>
                     </div>
                     
                 </div>
+                {%endfor%}
     
                 <div class="district">
                     <img src="/static/images/school.png" alt="school-img"/>
                     <div class="district-info">
                         <p>School District: </p>
-                        <p>Leon County</p>
+                        <p>{{ districtname }}</p>
                     </div>
                 </div>
             </div>
