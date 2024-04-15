@@ -278,7 +278,9 @@
     flex-direction: column;
     margin:auto;
     background-color: var(--tan);
-    width: 60vw;
+    width: auto;
+    padding-left: 3%;
+    padding-right: 3%;
     min-width: 600px;
     height:600px;
     margin-top: 120px;
@@ -290,8 +292,8 @@
     border-radius: 5px;
     margin-right: auto;
     margin-top: 40px;
-    width: 50vw;
-    height: 400px;
+    width: 80%;
+    height: 70%;
     background-color: var(--snow);
 }
 
@@ -309,16 +311,24 @@
     padding-top: 10px;
 }
 
-.num-bed, .num-bath, .num-sqft{
+.num-bed, .num-bath, .num-half-bath, .num-sqft{
     padding-top: 18px;
     padding-bottom: 16px;
     font-size: calc(1.3vw + 1.3vh + 1vmin);
     text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
-.bed, .bath, .sqft, .address{
+.bed, .bath, .half-bath, .sqft, .address{
     font-size: calc(0.7vw + 0.7vh + 1vmin);
     text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.bed, .num-bed{
+    padding-left: 50px;
 }
 
 .description{
@@ -378,6 +388,31 @@
     width: 80%;
     text-align: left;
     margin: auto;
+}
+
+.other{ 
+    padding-top: 10px;
+}
+
+.modify-listing{
+    display: flex;
+    width: 50%;
+    font-family: Montserrat;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+
+.edit-button a, .delete-button a{
+    text-decoration: underline; 
+    color: var(--earth);
+    background-color: var(--sun);
+    font-size: calc(0.8vw + 0.8vh + 1vmin);
+    padding: 30px;
+    border-radius: 5px;
+
 }
 
 .schools{

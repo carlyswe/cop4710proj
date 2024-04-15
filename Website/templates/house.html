@@ -20,16 +20,17 @@
             <a class="nav-options" href="www.google.com">crime map</a>
             <a class="nav-options" href="/viewlistings">buy</a>
             <a class="nav-options" href="/addlisting">sell</a>
-            <a class="join nav-options" href="www.google.com">join / signup</a>
+            <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
         </nav>
 
         <body class="wrapper-home">
             <div class="home-image">
                 <div class="home-box">
-                        <img class="house-photo"></img>
+                        <a class="house-photo" src="/Website/static/images/home.png" ></a>
+
                         <div class="house-info">
                         <div>
-                            <h2 class="price">${{ houseinfo["price"] }} </h2>
+                            <h2 class="price">${{ "{:,.2f}".format(houseinfo["price"]) }} </h2>
                             <h2 class="address">{{houseinfo["street"]}} </h2>
                         </div>
                         <div>
@@ -41,19 +42,24 @@
                             <h2 class="bath">bath</h2>
                         </div> 
                         <div>
-                            <h2 class="num-sqft">{{ houseinfo["sqft"] }}</h2>
+                            <h2 class="num-bath">{{ houseinfo["half_baths"] }}</h2>
+                            <h2 class="half-bath">half-bath</h2>
+                        </div> 
+                        <div>
+                            <h2 class="num-sqft">{{ "{:,}".format(houseinfo["sqft"]) }}</h2>
                             <h2 class="sqft">sqft</h2>
                         </div> 
                      </div>  
                 </div>
             </div>
 
-            <div class="description">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ratione, doloremque a 
-                    expedita sunt debitis soluta reprehenderit minima dolores dicta, maiores molestiae doloribus
-                    eos amet ea perferendis pariatur laboriosam voluptates? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Unde ratione, doloremque a expedita sunt debitis soluta reprehenderit minima dolores dicta, maiores molestiae doloribus
-                    eos amet ea perferendis pariatur laboriosam voluptates?</p>
+            <div class="modify-listing">
+                <div class="edit-button">
+                    <a href="">Edit Listing</a>
+                </div>
+                <div class="delete-button">
+                    <a href="">Delete Listing</a>
+                </div> 
             </div>
 
             <div class="facts">
@@ -72,20 +78,12 @@
             
                     <div class="square-feet">
                         <ul>Square Feet</ul>
-                        <li>{{ houseinfo["sqft"] }}</li>
-                    </div>
-
-                    <div class="exterior">
-                        <ul>Exterior</ul>
-                        <li>1 story</li>
-                        <li>Parking Garage: </li>
+                        <li>{{ "{:,}".format(houseinfo["sqft"]) }}</li>
                     </div>
 
                     <div class="other">
                         <ul>Other</ul>
                         <li>Year Built: {{ houseinfo["year_built"] }}</li>
-                        <li>HOA Fee: </li>
-                        <li>Price Per Sqft: </li>
                     </div>
 
                     <div class="property">
@@ -136,9 +134,9 @@
                 </div>
                 <div class="crime-container">   
                     <div class="crime-box">
-                        <p class="box-text-1">Total Crime Index</p>
+                        <p class="box-text-1">Total Arrests</p>
                         <p class="box-text-2">10</p>
-                        <p class="box-text-3">(100 is safest)</p>
+                        <p class="box-text-3">(for all crimes)</p>
                     </div>
 
                     <div class="crime-box">

@@ -126,8 +126,6 @@ def house(listingID):
     houseinfo = cur.fetchone()
 
 
-    #format price to have commas
-
 
     return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
 
@@ -136,8 +134,6 @@ def house(listingID):
 def editlisting(listingID):
     con = database()
     con = con.cursor()
-
-
 
 
 

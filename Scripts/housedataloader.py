@@ -100,5 +100,5 @@ def process_csv_file(file_path):
             db.close()
 
 # Example usage
-process_csv_file('/Users/carlysweeney/Downloads/dataloading/Data/forsale.csv')
-process_csv_file('/Users/carlysweeney/Downloads/dataloading/Data/forrent.csv')
+process_csv_file(r'/Users/adelinebelova/Data/forsale.csv')
+process_csv_file(r'/Users/adelinebelova/Data/forrent.csv')
