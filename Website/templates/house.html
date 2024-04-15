@@ -23,6 +23,8 @@
             <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
         </nav>
 
+
+
         <body class="wrapper-home">
             <div class="home-image">
                 <div class="home-box">
@@ -32,6 +34,7 @@
                         <div>
                             <h2 class="price">${{ "{:,.2f}".format(houseinfo["price"]) }} </h2>
                             <h2 class="address">{{houseinfo["street"]}} </h2>
+                            <h2 class = "zipcode">{{ houseinfo["ZipCode"] }} </h2>
                         </div>
                         <div>
                             <h2 class="num-bed">{{houseinfo["beds"] }}</h2>
@@ -66,6 +69,8 @@
                 <h3>Facts and Features </h3>
             </div>
 
+            <a href ='{{url_for('editlisting',listingID=houseinfo['listingID'])}}'> Edit Listing </a>
+
             <div class="interior">
                 <p>Features</p>
                 <div class="interior-info">
@@ -98,28 +103,26 @@
                 <p>Schools</p>
             </div>
 
+            {%for school in schools%}
             <div class="school-info">
                 <div class="ratings">
                     <p class="ratings-p">Ratings</p>
                     <div class="school-name">
                         <div class="grade">
-                            <p class="letter">A</p>
-                            <p>Leon High School</p>
-                        </div>
-    
-                        <div class="grade">
-                            <p class="letter">A</p>
-                            <p>Godby High School</p>
+                            <p class="letter">{{ school["Grade2022"] }}</p>
+                            <p>{{ school["SchoolName"] }}</p>
+                            <br>
                         </div>
                     </div>
                     
                 </div>
+                {%endfor%}
     
                 <div class="district">
                     <img src="/static/images/school.png" alt="school-img"/>
                     <div class="district-info">
                         <p>School District: </p>
-                        <p>Leon County</p>
+                        <p>{{ districtname }}</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +133,7 @@
 
             <div class="crime-reports">
                 <div class="crime-head-container">
-                    <p class="crime-head">Leon County Crime Data</p>
+                    <p class="crime-head"> {{ districtname }} Crime Data</p>
                 </div>
                 <div class="crime-container">   
                     <div class="crime-box">
@@ -150,23 +153,27 @@
                         <div class="grid">
                             <div>
                                 <p>Total Arrests</p>
-                                <p>0</p>
+                                <p>{{ crime["Total_Arrests"] }}</p>
                             </div>
                             <div>
                                 <p>Murder</p>
-                                <p>0</p>
+                                <p>{{ crime["Manslaughter"] }}</p>
                             </div>
                             <div>
-                                <p>Rape</p>
-                                <p>0</p>
+                                <p>Assault</p>
+                                <p> {{ crime["Assualt"] }}</p>
                             </div>
                             <div>
                                 <p>Robbery</p>
-                                <p>0</p>
+                                <p>{{ crime["Larceny"] }}</p>
+                            </div>
+                            <div>
+                                <p>Kidnapping</p>
+                                <p>{{ crime["Kidnap_Abduction"] }}</p>
                             </div>
                             <div>
                                 <p>Burglary</p>
-                                <p>0</p>
+                                <p>{{ crime["Burglary"] }}</p>
                             </div>
                         </div>
                     </div>

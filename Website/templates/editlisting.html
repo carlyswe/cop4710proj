@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 
-<head>
+<form action = "{{url_for('edit',listingID=houseinfo["listingID"])}}" method = "POST">
+    <p>Price:</p>
+    <input type = "text" name = "price" value = {{ houseinfo["price"] }} required/>
+     <p>Total sqft:</p>
+    <input type = "text" name = "sqft" value = {{ houseinfo["sqft"] }} />
+    <p># Bedrooms:</p>
+    <input type = "text" name = "numbeds" value = {{ houseinfo["beds"] }} required/>
+    <p># Full Baths:</p>
+    <input type = "text" name = "numfullbaths" value = {{ houseinfo["full_baths"] }} required/>
+    <p># Half Baths:</p>
+    <input type = "text" name = "numhalfbaths" value = {{ houseinfo["half_baths"] }} required/>
+    <p>Year Built:</p>
+    <input type = "text" name = "yearbuilt" value = {{ houseinfo["year_built"] }} />
+    <p>Style: </p>
+    <input type = "text" name = "style" value = {{ houseinfo["style"] }}/>
+    <p>Street:</p>
+    <input type = "text" name = "street" value = {{ houseinfo["street"] }} required/>
+    <p>City:</p>
+    <input type = "text" name = "city" value = {{ houseinfo["city"] }} required/>
+    <p>Unit:</p>
+    <input type = "text" name = "unit" value = {{ houseinfo["unit"] }} />
+     <p>Zip Code:</p>
+    <input type = "text"  name = "zipcode" value = {{ houseinfo["ZipCode"] }} required/>
+    <p>Photo URL:</p>
+    <input type = "text" name = "photo" value = {{ houseinfo["photo"] }}/>
+    <input class="submit-button" type = "submit" value = "Submit" />
 
-</head>
-<body>
+</form>
 
-</body>
 </html>
