@@ -135,7 +135,7 @@
 
             <div class="crime-reports">
                 <div class="crime-head-container">
-                    <p class="crime-head">Leon County Crime Data</p>
+                    <p class="crime-head"> {{ districtname }} Crime Data</p>
                 </div>
                 <div class="crime-container">   
                     <div class="crime-box">
@@ -155,23 +155,27 @@
                         <div class="grid">
                             <div>
                                 <p>Total Arrests</p>
-                                <p>0</p>
+                                <p>{{ crime["Total_Arrests"] }}</p>
                             </div>
                             <div>
                                 <p>Murder</p>
-                                <p>0</p>
+                                <p>{{ crime["Manslaughter"] }}</p>
                             </div>
                             <div>
-                                <p>Rape</p>
-                                <p>0</p>
+                                <p>Assault</p>
+                                <p> {{ crime["Assualt"] }}</p>
                             </div>
                             <div>
                                 <p>Robbery</p>
-                                <p>0</p>
+                                <p>{{ crime["Larceny"] }}</p>
+                            </div>
+                            <div>
+                                <p>Kidnapping</p>
+                                <p>{{ crime["Kidnap_Abduction"] }}</p>
                             </div>
                             <div>
                                 <p>Burglary</p>
-                                <p>0</p>
+                                <p>{{ crime["Burglary"] }}</p>
                             </div>
                         </div>
                     </div>

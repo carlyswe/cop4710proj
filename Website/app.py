@@ -153,11 +153,14 @@ def house(listingID):
 
 
     #query to get crime info
+    cur.execute("Select * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (districtname,))
+    crime = cur.fetchall()
 
+    print(crime)
 
     #join statistics on county name
 
-    return render_template("house.html", houseinfo=houseinfo, schools=schools, districtname=districtname, path='/house'+listingID)
+    return render_template("house.html", houseinfo=houseinfo, schools=schools, districtname=districtname, crime=crime, path='/house'+listingID)
 
 
 @app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])
