@@ -132,15 +132,51 @@ def house(listingID):
     return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
 
 
-@app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])
+@app.route('/editlisting', methods = ['POST', 'GET'])
 def editlisting(listingID):
     con = database()
-    con = con.cursor()
+    cur = con.cursor(dictionary=True)
+
+    query = "SELECT * FROM Homes WHERE listingID = %s"
+
+    cur.execute(query, (listingID,))
+
+    houseinfo = cur.fetchone()
+
+    return render_template("editlisting.html", houseinfo=houseinfo)
 
 
+@app.route("/edit")
+def edit(listingID):
+    if request.method == 'POST':
+        con = database()
+        cur = con.cursor()
+        try:
+            price = request.form['price']
+            sqft = request.form['sqft']
+            numbed = request.form['numbeds']
+            numfullbaths = request.form['numfullbaths']
+            numhalfbaths = request.form['numhalfbaths']
+            yearbuilt = request.form['yearbuilt'] or None
+            photourl = request.form['photourl'] or None
+            street = request.form['street']
+            city = request.form['city']
+            zipcode = request.form['zipcode']
+            unit = request.form['unit'] or None
+            style = request.form['style'] or None
 
 
+            query = "UPDATE Homes SET price = %s, sqft = %s, beds = %s, full_baths = %s, half_baths = %s, year_built = %s, photo = %s, street = %s, city = %s, ZipCode = %s, unit = %s, style = %s WHERE listingID = %s"
 
+            cur.execute(query, (price, sqft, numbed, numfullbaths, numbed, numhalfbaths, yearbuilt, photourl, street, city, zipcode, unit, style, listingID))
+            con.commit()
+
+        except Exception as e:
+            con.rollback()
+            print("Exception: ", e)
+
+        con.close()
+        return redirect("/house/<listingID>")
 
 if __name__ == '__main__':
     app.run(debug = True)
