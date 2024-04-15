@@ -33,6 +33,7 @@
                         <div>
                             <h2 class="price">${{ houseinfo["price"] }} </h2>
                             <h2 class="address">{{houseinfo["street"]}} </h2>
+                            <h2 class = "zipcode">{{ houseinfo["ZipCode"] }} </h2>
                         </div>
                         <div>
                             <h2 class="num-bed">{{houseinfo["beds"] }}</h2>
@@ -62,7 +63,7 @@
                 <h3>Facts and Features </h3>
             </div>
 
-            <a href ='{{url_for('editlisting',listingID=houseinfo['ListingID'])}}'> Edit Listing </a>
+            <a href ='{{url_for('editlisting',listingID=houseinfo['listingID'])}}'> Edit Listing </a>
 
             <div class="interior">
                 <p>Features</p>

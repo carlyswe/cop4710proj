@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 
-<form action = "{{url_for('edit')}}" method = "POST">
+<form action = "{{url_for('edit',listingID=houseinfo["listingID"])}}" method = "GET">
     <p>Price:</p>
-    <input type = "number" name = "price" value = {{ houseinfo["price"] }}required/>
+    <input type = "text" name = "price" value = {{ houseinfo["price"] }} required/>
      <p>Total sqft:</p>
-    <input type = "number" name = "sqft" value = {{ houseinfo["sqft"] }}/>
+    <input type = "text" name = "sqft" value = {{ houseinfo["sqft"] }} />
     <p># Bedrooms:</p>
-    <input type = "number" name = "numbeds" value = {{ houseinfo["beds"] }}required/>
+    <input type = "text" name = "numbeds" value = {{ houseinfo["beds"] }} required/>
     <p># Full Baths:</p>
-    <input type = "number" name = "numfullbaths" value = {{ houseinfo["full_baths"] }}required/>
+    <input type = "text" name = "numfullbaths" value = {{ houseinfo["full_baths"] }} required/>
     <p># Half Baths:</p>
-    <input type = "number" name = "numhalfbaths" value = {{ houseinfo["half_baths"] }}required/>
+    <input type = "text" name = "numhalfbaths" value = {{ houseinfo["half_baths"] }} required/>
     <p>Year Built:</p>
-    <input type = "number" name = "yearbuilt" value = {{ houseinfo["year_built"] }} />
+    <input type = "textr" name = "yearbuilt" value = {{ houseinfo["year_built"] }} />
     <p>Style: </p>
     <input type = "text" name = "style" value = {{ houseinfo["style"] }}/>
     <p>Street:</p>
-    <input type = "text" name = "street" value = {{ houseinfo["street"] }}required/>
+    <input type = "text" name = "street" value = {{ houseinfo["street"] }} required/>
     <p>City:</p>
-    <input type = "text" name = "city" value = {{ houseinfo["city"] }}required/>
+    <input type = "text" name = "city" value = {{ houseinfo["city"] }} required/>
     <p>Unit:</p>
     <input type = "text" name = "unit" value = {{ houseinfo["unit"] }} />
      <p>Zip Code:</p>
-    <input type = "number"  name = "zipcode" value = {{ houseinfo["ZipCode"] }}required/>
+    <input type = "ntext"  name = "zipcode" value = {{ houseinfo["ZipCode"] }} required/>
     <p>Photo URL:</p>
     <input type = "url" name = "photourl" value = {{ houseinfo["photo"] }}/>
     <input class="submit-button" type = "submit" value = "Submit" />

@@ -132,7 +132,7 @@ def house(listingID):
     return render_template("house.html", houseinfo=houseinfo, path='/house'+listingID)
 
 
-@app.route('/editlisting', methods = ['POST', 'GET'])
+@app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])
 def editlisting(listingID):
     con = database()
     cur = con.cursor(dictionary=True)
@@ -143,12 +143,12 @@ def editlisting(listingID):
 
     houseinfo = cur.fetchone()
 
-    return render_template("editlisting.html", houseinfo=houseinfo)
+    return render_template("editlisting.html", houseinfo=houseinfo, path='/editlisting'+listingID)
 
 
-@app.route("/edit")
+@app.route("/edit/<listingID>", methods = ['POST', 'GET'])
 def edit(listingID):
-    if request.method == 'POST':
+    if request.method == 'GET':
         con = database()
         cur = con.cursor()
         try:
@@ -176,7 +176,7 @@ def edit(listingID):
             print("Exception: ", e)
 
         con.close()
-        return redirect("/house/<listingID>")
+        return redirect("/house/"+listingID)
 
 if __name__ == '__main__':
     app.run(debug = True)
