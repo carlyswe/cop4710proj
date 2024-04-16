@@ -911,3 +911,57 @@
     width: 100%;
     font-family: Montserrat;
 }
+
+
+/**********************************************************
+                C R I M E  M A P
+**********************************************************/
+.select-county-header{
+    margin: auto;
+    text-align:center;
+    font-size: calc(1.0vw + 1.0vh + 1vmin);
+    padding: 20px;
+    padding-top: 50px;
+    font-family: Montserrat;
+    font-weight: normal;
+}
+
+.county-option{ 
+    margin: auto;
+    text-align: center;
+}
+
+.county-option div{
+    margin: auto;
+    
+}
+
+.crime-heading{
+    padding-bottom: 100px;
+}
+
+.content{
+    position: relative;
+    width: 20%;
+}
+
+.crime-chart-wrapper{
+    width: 100%;
+    display: flex; /* in case there are multiple charts  */
+}
+
+.crime-chart{
+    margin: auto;
+    margin-bottom: 100px;
+
+    /* these are just for the placeholder */
+    text-align: center;
+    vertical-align: center;
+    border-radius: 5px;
+    line-height: 500px;
+    /* */ 
+
+    width: 50%;
+    height: 500px;
+    background-color: var(--tan);
+}

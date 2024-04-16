@@ -23,6 +23,11 @@ def database():
 
     return db
 
+#crime map
+@app.route('/crimemap', methods=['GET', 'POST'])
+def crimemap():
+    return render_template ('crimemap.html')
+
 #delete listing function
 @app.route('/deletelisting', methods = ['POST', 'GET'])
 def deletelisting():
