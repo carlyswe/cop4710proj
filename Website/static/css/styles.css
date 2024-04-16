@@ -282,7 +282,6 @@
     padding-left: 3%;
     padding-right: 3%;
     min-width: 600px;
-    height:600px;
     margin-top: 120px;
 }
 
@@ -295,6 +294,17 @@
     width: 80%;
     height: 70%;
     background-color: var(--snow);
+}
+
+.hero-photo{
+    padding: 20px;
+    padding-bottom: 0;
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+    max-height: 500px;
+    vertical-align: center;
+    margin-bottom: 0px;
 }
 
 .zipcode{
