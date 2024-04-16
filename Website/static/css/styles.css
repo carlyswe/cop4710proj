@@ -841,26 +841,24 @@
 
   .generate button:hover{
     cursor: pointer; 
+    background-color:#ffcd6a;
   }
 
 
-  .first-row, .second-row{
+  .house-container{
     display: flex;
 
   }
 
-  .first-row{
-    margin-top: 100px;
-  }
-
   .houses{
+    margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
     height: auto;
     margin-bottom: 100px;
     color: var(--earth);
-    font-size: calc(1.1vw + 1.1vh + 1vmin);
+    font-size: calc(1.0vw + 1.0vh + 1vmin);
   }
 
   .house-option{
