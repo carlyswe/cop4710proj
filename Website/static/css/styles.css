@@ -259,6 +259,7 @@
     font-size: calc(0.4vw + 0.4vh + 1vmin);
     vertical-align: center;
     text-align: center;
+    font-family: Montserrat;
     line-height: 100px;
 }
 
@@ -902,4 +903,11 @@
     stroke-width:30;
   }
   
-  
+/**********************************************************
+                E D I T  L I S T I N G
+**********************************************************/
+
+.form-wrapper-edit{
+    width: 100%;
+    font-family: Montserrat;
+}

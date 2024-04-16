@@ -186,9 +186,9 @@ def edit(listingID):
             sqft = request.form['sqft']
             numbed = request.form['numbeds']
             numfullbaths = request.form['numfullbaths']
-            numhalfbaths = request.form['numhalfbaths']
+            numhalfbaths = request.form['numhalfbaths'] or None
             yearbuilt = request.form['yearbuilt'] or None
-            photourl = request.form['photo'] or None
+            photourl = request.form['photo']
             street = request.form['street']
             city = request.form['city']
             zipcode = request.form['zipcode']
