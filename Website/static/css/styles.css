@@ -926,6 +926,18 @@
     font-weight: normal;
 }
 
+.county-name{
+    font-family: Montserrat;
+    border: 0; 
+    background-color: var(--tan); 
+    padding: 5px;
+}
+
+.county-name:hover{
+    cursor: pointer;
+    background-color:#ffcd6a;
+}
+
 .county-option{ 
     margin: auto;
     text-align: center;
@@ -942,6 +954,7 @@
 
 .content{
     position: relative;
+    display: block;
     width: 20%;
 }
 

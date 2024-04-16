@@ -34,11 +34,17 @@
                 <h1 class="select-county-header">Select a County</h1>
                 <div class="dropdown county-option">
                     <button class="drop"></button>
-                    <!-- make this a form to submit to filter query -->
+                    <!-- make this a form to submit to filter query? -->
                     <div class="dropdown-content content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
+                        <form action = "" method = "POST">
+                            <div>   
+                                <button class="county-name" type="submit" name="county" value="Tallahassee">Tallahassee</button>
+                            </div>
+                            <div>   
+                                <button class="county-name" type="submit" name="county" value="Okaloosa">Okaloosa</button>
+                            </div>
+                            
+                        </form>
                     </div>
                 </div>
             </div>
