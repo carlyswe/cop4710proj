@@ -41,7 +41,7 @@
 }
 
 .logo{
-    font-family: 'Montserrat' !important;
+    font-family: 'Roboto Serif' !important;
     color: var(--snow);
     text-align:left !important; 
     margin-left: 5vw !important;
@@ -59,6 +59,12 @@
     font-size: calc(0.5vw + 0.5vh + 1vmin);
     min-width: 80px;
     text-align: center;
+}
+
+.nav-options:nth-of-type(1){
+    font-family: 'Roboto Serif' !important;
+    font-size: calc(0.9vw + 0.9vh + 1vmin);
+    font-weight: bold;
 }
 
 .join{
