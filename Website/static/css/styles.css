@@ -297,6 +297,12 @@
     background-color: var(--snow);
 }
 
+.zipcode{
+    font-size: calc(0.6vw + 0.6vh + 1vmin);
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
 .house-info{
     font-family: Montserrat;
     color:var(--earth);
@@ -313,7 +319,7 @@
 
 .num-bed, .num-bath, .num-half-bath, .num-sqft{
     padding-top: 18px;
-    padding-bottom: 16px;
+    padding-bottom: 18px;
     font-size: calc(1.3vw + 1.3vh + 1vmin);
     text-align:center;
     padding-right: 15px;
@@ -331,20 +337,7 @@
     padding-left: 50px;
 }
 
-.description{
-    background-color: var(--beige);
-    font-size: calc(0.6vw + 0.6vh + 1vmin);
-    width: 100%;
 
-}
-
-.description p{
-    width: 80%;
-    margin: auto;
-    color:var(--earth);
-    font-family: Montserrat;
-    padding-bottom: 80px;
-}
 
 .facts{
     background-color: var(--beige);
@@ -626,7 +619,7 @@
     border-top: 0;
 }
 
-.grid div:nth-of-type(5){
+.grid div:nth-of-type(6){
     border-bottom: 0;
 }
 
@@ -861,12 +854,13 @@
   }
 
   .houses{
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
     height: auto;
     margin-bottom: 100px;
     color: var(--earth);
-    font-size: calc(1.3vw + 1.3vh + 1vmin);
+    font-size: calc(1.1vw + 1.1vh + 1vmin);
   }
 
   .house-option{

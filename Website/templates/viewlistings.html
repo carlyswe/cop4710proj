@@ -85,8 +85,9 @@
                 <button>Generate Listings</button>
             </div>
 
-            {%for row in rows%}
+            
             <div class="houses">
+                {%for row in rows%}
                 <div class="first-row">
                     <a href="{{url_for('house',listingID=row['listingID'])}}" class="house-option">
                         <img src="/static/images/homepage-house.jpg" alt="house"/>
@@ -94,12 +95,14 @@
                             <p class="view-price"> ${{ row["price"] }}</p>
                             <ion-icon name="heart">
                                 <div class='red-bg'></div>
-                            </ion-icon>
+                             </ion-icon>
                         </div>
                         <p class="view-address">{{ row["street"] }}</p>
                     </a>
+                </div>
+                {%endfor%}
             </div>
-            {%endfor%}
+            
             
             
 
