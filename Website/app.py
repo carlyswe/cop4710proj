@@ -65,7 +65,6 @@ def addlisting():
             numfullbaths = request.form['numfullbaths']
             numhalfbaths = request.form['numhalfbaths']
             yearbuilt = request.form['yearbuilt'] or None
-            #pricepersqft = request.form['pricepersqft']
             photourl = request.form['photourl'] or None
             street = request.form['street']
             city = request.form['city']
@@ -126,11 +125,8 @@ def house(listingID):
     houseinfo = cur.fetchone()
 
 
-<<<<<<< HEAD
-=======
     #query to get school data
 
->>>>>>> 68ade09832a92c3ceade78f5ec2c4335809f8406
 
     #join zipcodes to house where they match and then get the county then return all schools in that county and the grade
 
@@ -203,8 +199,6 @@ def edit(listingID):
 
             query = "UPDATE Homes SET price = %s, sqft = %s, beds = %s, full_baths = %s, half_baths = %s, year_built = %s, photo = %s, street = %s, city = %s, ZipCode = %s, unit = %s, style = %s WHERE listingID = %s"
 
-<<<<<<< HEAD
-=======
             cur.execute(query, (price, sqft, numbed, numfullbaths, numhalfbaths, yearbuilt, photourl, street, city, zipcode, unit, style, listingID))
             con.commit()
 
@@ -215,6 +209,6 @@ def edit(listingID):
         con.close()
         return redirect("/house/"+listingID)
 
->>>>>>> 68ade09832a92c3ceade78f5ec2c4335809f8406
 if __name__ == '__main__':
+    app.run(debug = True)
     app.run(debug = True)

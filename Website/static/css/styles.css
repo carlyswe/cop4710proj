@@ -379,6 +379,7 @@
     padding: 50px;
     width: 100%;
     height: auto; 
+    font-family: Montserrat;
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
     background-color: var(--beige);
@@ -431,7 +432,7 @@
 }
 
 .ratings{
-    font-family:Montserrat;
+    font-family: 'Montserrat' !important;
     width: 100%;
     background-color: var(--beige);
 }
