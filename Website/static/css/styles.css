@@ -836,10 +836,11 @@
     width: 100%;
   }
 
-  .generate{
+  .generate form{
     width: 100%;
     display: flex;
   }
+
 
   .generate button{
     margin: auto;
