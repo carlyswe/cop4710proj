@@ -107,8 +107,10 @@ def viewListings():
 
     cur = con.cursor(dictionary = True)
 
-    cur.execute('SELECT * FROM Homes LIMIT 6')
+    cur.execute('SELECT * FROM Homes LIMIT 6' )
     rows = cur.fetchall()
+
+    con.close()
 
     return render_template("viewlistings.html", rows = rows)
 
@@ -157,6 +159,8 @@ def house(listingID):
 
     print(crime)
 
+    con.close()
+
     #join statistics on county name
 
     return render_template("house.html", houseinfo=houseinfo, schools=schools, districtname=districtname, crime=crime, path='/house'+listingID)
@@ -172,6 +176,8 @@ def editlisting(listingID):
     cur.execute(query, (listingID,))
 
     houseinfo = cur.fetchone()
+
+    con.close()
 
     return render_template("editlisting.html", houseinfo=houseinfo, path='/editlisting'+listingID)
 
