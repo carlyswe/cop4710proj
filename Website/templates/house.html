@@ -61,7 +61,7 @@
                     <a href ='{{url_for('editlisting',listingID=houseinfo['listingID'])}}'> Edit Listing </a>
                 </div>
                 <div class="delete-button">
-                    <a href="">Delete Listing</a>
+                    <a href='{{url_for('deletelisting', listingID=houseinfo['listingID'])}}'> Delete Listing </a>
                 </div> 
             </div>
 

@@ -55,6 +55,28 @@ def deletelisting():
             print("Something went wrong: {}".format(err))
             msg = "Unable to delete listing. Please check Listing ID."
             print("error")
+
+    elif request.method == 'GET':
+        try:
+            con = database()
+            cur = con.cursor()
+
+            query = "DELETE FROM Homes WHERE listingID = %s"
+
+            #cur.execute(query, (listingID,))
+
+            msg = "Listing has been sucessfully deleted."
+
+            con.commit()
+            con.close()
+
+            return render_template('Index.html')
+
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))
+            msg = "Unable to delete listing. Please check Listing ID."
+            print("error")
+
     return render_template('deletelisting.html', msg = msg)
 
 
@@ -162,9 +184,7 @@ def house(listingID):
     cur.execute("Select * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (districtname,))
     crime = cur.fetchone()
 
-    print(crime)
-
-    print(houseinfo)
+    ##print(houseinfo)
 
     con.close()
 
@@ -184,6 +204,8 @@ def editlisting(listingID):
 
     houseinfo = cur.fetchone()
 
+    print(houseinfo)
+
     con.close()
 
     return render_template("editlisting.html", houseinfo=houseinfo, path='/editlisting'+listingID)
@@ -195,24 +217,49 @@ def edit(listingID):
         con = database()
         cur = con.cursor()
         try:
+
+            print("hereeeeeee")
+
             price = request.form['price']
+
+            print("here1")
             sqft = request.form['sqft']
+
+            print("here2")
             numbed = request.form['numbeds']
+
+            print("here3")
             numfullbaths = request.form['numfullbaths']
+
+            print("here4")
             numhalfbaths = request.form['numhalfbaths'] or None
+
+            print("here5")
             yearbuilt = request.form['yearbuilt'] or None
+
+            print("here6")
             photourl = request.form['photo']
+
+            print("here7")
             street = request.form['street']
+
+            print("here8")
             city = request.form['city']
+
+            print("here9")
             zipcode = request.form['zipcode']
+
+            print("here10")
             unit = request.form['unit'] or None
-            style = request.form['style'] or None
+
+
+            print("here12")
 
 
 
-            query = "UPDATE Homes SET price = %s, sqft = %s, beds = %s, full_baths = %s, half_baths = %s, year_built = %s, photo = %s, street = %s, city = %s, ZipCode = %s, unit = %s, style = %s WHERE listingID = %s"
+            query = "UPDATE Homes SET price = %s, sqft = %s, beds = %s, full_baths = %s, half_baths = %s, year_built = %s, photo = %s, street = %s, city = %s, ZipCode = %s, unit = %s WHERE listingID = %s"
 
-            cur.execute(query, (price, sqft, numbed, numfullbaths, numhalfbaths, yearbuilt, photourl, street, city, zipcode, unit, style, listingID))
+            cur.execute(query, (price, sqft, numbed, numfullbaths, numhalfbaths, yearbuilt, photourl, street, city, zipcode, unit, listingID))
             con.commit()
 
         except Exception as e:
