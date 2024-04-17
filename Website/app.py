@@ -23,6 +23,11 @@ def database():
 
     return db
 
+#crime map
+@app.route('/crimemap', methods=['GET', 'POST'])
+def crimemap():
+    return render_template ('crimemap.html')
+
 #delete listing function
 @app.route('/deletelisting', methods = ['POST', 'GET'])
 def deletelisting():
@@ -192,9 +197,9 @@ def edit(listingID):
             sqft = request.form['sqft']
             numbed = request.form['numbeds']
             numfullbaths = request.form['numfullbaths']
-            numhalfbaths = request.form['numhalfbaths']
+            numhalfbaths = request.form['numhalfbaths'] or None
             yearbuilt = request.form['yearbuilt'] or None
-            photourl = request.form['photo'] or None
+            photourl = request.form['photo']
             street = request.form['street']
             city = request.form['city']
             zipcode = request.form['zipcode']

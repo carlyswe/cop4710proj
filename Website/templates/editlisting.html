@@ -1,32 +1,115 @@
 <!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Real Estate Site</title>
+        <meta name="description" content="Find homes within safe counties in Florida.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/css/styles.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
 
-<form action = "{{url_for('edit',listingID=houseinfo["listingID"])}}" method = "POST">
-    <p>Price:</p>
-    <input type = "text" name = "price" value = {{ houseinfo["price"] }} required/>
-     <p>Total sqft:</p>
-    <input type = "text" name = "sqft" value = {{ houseinfo["sqft"] }} />
-    <p># Bedrooms:</p>
-    <input type = "text" name = "numbeds" value = {{ houseinfo["beds"] }} required/>
-    <p># Full Baths:</p>
-    <input type = "text" name = "numfullbaths" value = {{ houseinfo["full_baths"] }} required/>
-    <p># Half Baths:</p>
-    <input type = "text" name = "numhalfbaths" value = {{ houseinfo["half_baths"] }} required/>
-    <p>Year Built:</p>
-    <input type = "text" name = "yearbuilt" value = {{ houseinfo["year_built"] }} />
-    <p>Style: </p>
-    <input type = "text" name = "style" value = {{ houseinfo["style"] }}/>
-    <p>Street:</p>
-    <input type = "text" name = "street" value = {{ houseinfo["street"] }} required/>
-    <p>City:</p>
-    <input type = "text" name = "city" value = {{ houseinfo["city"] }} required/>
-    <p>Unit:</p>
-    <input type = "text" name = "unit" value = {{ houseinfo["unit"] }} />
-     <p>Zip Code:</p>
-    <input type = "text"  name = "zipcode" value = {{ houseinfo["ZipCode"] }} required/>
-    <p>Photo URL:</p>
-    <input type = "text" name = "photo" value = {{ houseinfo["photo"] }}/>
-    <input class="submit-button" type = "submit" value = "Submit" />
+    </head>
 
-</form>
+    <nav class="navbar">
+        <a class="logo nav-options" href="/">SafeHomes</a>
+        <a class="nav-options" href="/crimemap">crime map</a>
+        <a class="nav-options" href="/viewlistings">buy</a>
+        <a class="nav-options" href="/addlisting">sell</a>
+        <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
+    </nav>
+
+    <body class="wrapper-home">
+        <div class="listing-header">   
+            <h1>Edit Listing </h1>
+        </div>
+        <div class="message">
+            <div class="msg">
+                {{ msg }}
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="form">
+                <form action = "{{url_for('edit',listingID=houseinfo["listingID"])}}" method = "POST">
+                    <div>
+                        <p>Price:</p>
+                        <input type = "text" name = "price" value = {{ houseinfo["price"] }} required/>
+                    </div>
+                    
+                    <div>
+                        <p>Total sqft:</p>
+                        <input type = "text" name = "sqft" value = {{ houseinfo["sqft"] }} required/>
+                    </div>
+                    
+                    <div>
+                        <p># Bedrooms:</p>
+                        <input type = "text" name = "numbeds" value = {{ houseinfo["beds"] }} required/>
+                    </div>
+                    
+                    <div>
+                        <p># Full Baths:</p>
+                        <input type = "text" name = "numfullbaths" value = {{ houseinfo["full_baths"] }} required/>
+                    </div>
+
+                    <div>
+                        <p># Half Baths:</p>
+                        <input type = "text" name = "numhalfbaths" value = {{ houseinfo["half_baths"] }}/>
+                    </div>
+                    
+                    <div>   
+                        <p>Year Built:</p>
+                        <input type = "text" name = "yearbuilt" value = {{ houseinfo["year_built"] }} />
+                    </div>
+
+                    <div>
+                        <p>Street:</p>
+                        <input type = "text" name = "street" value = {{ houseinfo["street"] }} required/>
+                    </div>
+                    
+                    <div>
+                        <p>City:</p>
+                        <input type = "text" name = "city" value = {{ houseinfo["city"] }} required/>
+                    </div>
+
+                    <div>
+                        <p>City:</p>
+                        <input type = "text" name = "city" value = {{ houseinfo["city"] }} required/>
+                    </div>
+                    
+                    <div>
+                        <p>Unit:</p>
+                        <input type = "text" name = "unit" value = {{ houseinfo["unit"] }} />
+                    </div>
+                    
+                    <div>
+                        <p>Zip Code:</p>
+                        <input type = "text"  name = "zipcode" value = {{ houseinfo["ZipCode"] }} required/>
+                    </div>
+
+                    <div>
+                        <p>Photo URL:</p>
+                        <input type = "text" name = "photo" value = {{ houseinfo["photo"] }} required/>
+                    </div>
+                    
+                    <div class="submit">
+                        <input class="submit-button" type = "submit" value = "Submit" />
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </body>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>© Copyright SafeHomes 2024 </p>
+        </div>
+    </footer>
 
 </html>

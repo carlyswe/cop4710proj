@@ -16,8 +16,8 @@
         </head>
 
         <nav class="navbar">
-            <a class="logo nav-options" href="/">Logo</a>
-            <a class="nav-options" href="www.google.com">crime map</a>
+            <a class="logo nav-options" href="/">SafeHomes</a>
+            <a class="nav-options" href="/crimemap">crime map</a>
             <a class="nav-options" href="/viewlistings">buy</a>
             <a class="nav-options" href="/addlisting">sell</a>
             <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
@@ -28,7 +28,7 @@
         <body class="wrapper-home">
             <div class="home-image">
                 <div class="home-box">
-                        <a class="house-photo" src="/Website/static/images/home.png" ></a>
+                        <img class="hero-photo" src="{{ houseinfo["photo"] }}" alt="house"/>
 
                         <div class="house-info">
                         <div>
@@ -183,7 +183,7 @@
 
             <footer class="footer">
                 <div class="footer-text">
-                    <p>© Copyright LOGO NAME </p>
+                    <p>© Copyright SafeHomes 2024 </p>
                 </div>
             </footer>
         

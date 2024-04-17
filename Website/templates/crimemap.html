@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Real Estate Site | Crime Map</title>
+        <meta name="description" content="Find homes within safe counties in Florida.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/css/styles.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+
+    </head>
+
+    <nav class="navbar">
+        <a class="logo nav-options" href="/">SafeHomes</a>
+        <a class="nav-options" href="/crimemap">crime map</a>
+        <a class="nav-options" href="/viewlistings">buy</a>
+        <a class="nav-options" href="/addlisting">sell</a>
+        <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
+    </nav>
+
+    <body class="wrapper-home">
+        <div class="listing-header">   
+            <h1>Crime Data </h1>
+        </div>
+
+        <div class="crime-reports">
+            <div class="crime-heading">
+                <h1 class="select-county-header">Select a County</h1>
+                <div class="dropdown county-option">
+                    <button class="drop"></button>
+                    <!-- make this a form to submit to filter query? -->
+                    <div class="dropdown-content content">
+                        <form action = "" method = "POST">
+                            <div>   
+                                <button class="county-name" type="submit" name="county" value="Leon">Leon</button>
+                            </div>
+                            <div>   
+                                <button class="county-name" type="submit" name="county" value="Okaloosa">Okaloosa</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crime-chart-wrapper">
+                <div class="crime-chart">
+                    <div>Chart Placeholder</div>
+                </div>
+            </div>
+
+            <div class="crime-container">   
+                <div class="crime-box">
+                    <p class="box-text-1">Total Arrests</p>
+                    <p class="box-text-2">0</p>
+                    <p class="box-text-3">(for all crimes)</p>
+                </div>
+
+                <div class="crime-box">
+                    <p class="box-text-1">Safety Grade</p>
+                    <p class="box-text-2">F</p>
+                    <p class="box-text-3">(A-F ratings)</p>
+                </div>
+
+                <div class="annual-crime-box">
+                    <p class="annual-text-1">Annual Crime Rate</p>
+                    <div class="grid">
+                        <div>
+                            <p>Total Arrests</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Murder</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Assault</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Robbery</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Kidnapping</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Burglary</p>
+                            <p>0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>© Copyright SafeHomes 2024 </p>
+        </div>
+    </footer>
+
+</html>
