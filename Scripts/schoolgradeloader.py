@@ -3,7 +3,7 @@ import mysql.connector
 
 # Establish a connection to the MySQL server
 connection = mysql.connector.connect(
-        host='db-newhomes.c9weqm4g04ms.usa-east-2.rds.amazonaws.com',
+        host='db-newhomes.c9weqm4g04ms.us-east-2.rds.amazonaws.com',
         user='admin',
         password='cop4710!',
         database='realtorsite'
@@ -13,7 +13,7 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # Open the CSV file
-with open(r'C:\Users\dunlo\PycharmProjects\realestateproj\datatbl\schoolgrades.csv', 'r') as file:
+with open(r'/Users/adelinebelova/Data/schoolgrades.csv', 'r') as file:
     csv_reader = csv.reader(file)
 
     # Skip the header rows until reaching the actual data
@@ -29,7 +29,7 @@ with open(r'C:\Users\dunlo\PycharmProjects\realestateproj\datatbl\schoolgrades.c
         district_name = row[1].strip() if row[1].strip() else None
         school_number = int(row[2].strip()) if row[2].strip() else None
         school_name = row[4].strip() if row[4].strip() else None
-        grade_2022 = row[13].strip()[:1] if row[13].strip() else None
+        grade_2022 = row[17].strip()[:1] if row[17].strip() else None
 
         # Check if the district already exists in the database
         query = "SELECT COUNT(*) FROM Counties WHERE DistrictNumber = %s"
