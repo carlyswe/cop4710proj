@@ -101,28 +101,26 @@ def deletelisting():
             msg = "Unable to delete listing. Please check Listing ID."
             print("error")
 
-    elif request.method == 'GET':
-        try:
-            con = database()
-            cur = con.cursor()
-
-            query = "DELETE FROM Homes WHERE listingID = %s"
-
-            #cur.execute(query, (listingID,))
-
-            msg = "Listing has been sucessfully deleted."
-
-            con.commit()
-            con.close()
-
-            return render_template('Index.html')
-
-        except mysql.connector.Error as err:
-            print("Something went wrong: {}".format(err))
-            msg = "Unable to delete listing. Please check Listing ID."
-            print("error")
-
     return render_template('deletelisting.html', msg = msg)
+
+
+@app.route('/deletelisting/<listingID>', methods=['POST', 'GET'])
+def deletedirectlisting(listingID):
+    try:
+        con = database()
+        cur = con.cursor()
+
+        query = "DELETE FROM Homes WHERE listingID = %s"
+        cur.execute(query, (listingID, ))
+        msg = "Listing has been deleted."
+        con.commit()
+        con.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        msg = "Unable to delete listing. Please check Listing ID."
+    return render_template("deletelisting.html", msg=msg)
+
 
 
 @app.route('/addlisting', methods = ['POST', 'GET'])
