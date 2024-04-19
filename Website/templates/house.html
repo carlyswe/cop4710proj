@@ -61,7 +61,7 @@
                     <a href ='{{url_for('editlisting',listingID=houseinfo['listingID'])}}'> Edit Listing </a>
                 </div>
                 <div class="delete-button">
-                    <a href='{{url_for('deletelisting', listingID=houseinfo['listingID'])}}'> Delete Listing </a>
+                    <a href='{{url_for('deletedirectlisting', listingID=houseinfo['listingID'])}}'> Delete Listing </a>
                 </div> 
             </div>
 
@@ -145,8 +145,8 @@
 
                     <div class="crime-box">
                         <p class="box-text-1">Safety Grade</p>
-                        <p class="box-text-2"> {{ crime["crimeGrade"] }}</p>
-                        <p class="box-text-3">(A+ - F ratings)</p>
+                        <p class="box-text-2"> {{crime["crimeGrade"]}}</p>
+                        <p class="box-text-3">(A-F ratings)</p>
                     </div>
 
                     <div class="annual-crime-box">
