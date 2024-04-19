@@ -222,6 +222,7 @@ def house(listingID):
     #query to get crime info
     cur.execute("Select * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (districtname,))
     crime = cur.fetchone()
+    print(crime)
 
     ##print(houseinfo)
 
