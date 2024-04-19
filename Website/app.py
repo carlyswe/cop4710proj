@@ -26,6 +26,49 @@ def database():
 #crime map
 @app.route('/crimemap', methods=['GET', 'POST'])
 def crimemap():
+    if request.method == "POST":
+        try:
+            print("IN HEREEEEEE")
+
+            county = request.form['county']
+
+            county = str(county)
+
+            print(county)
+
+            con = database()
+            cur = con.cursor(dictionary = True)
+
+            cur.execute("SELECT * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (county,))
+
+            print("below the query")
+
+            crime = cur.fetchone()
+
+            print(crime)
+
+            print("below the fetch")
+
+
+            con.close()
+
+        except mysql.connector.Error as err:
+            print("SOMETHING WENT WRONG !!!!!!!!!: {}".format(err))
+
+
+        return render_template("crimemap.html", crime=crime)
+
+    else:
+        print("here")
+        crime = {'Total_Arrests': 0, 'Manslaughter': 0, 'Simple_Assault': 0, 'Larceny': 0, 'Kidnap_Abduction': 0, 'Burglary': 0, 'crimeGrade': 'N/A'}
+    return render_template("crimemap.html", crime=crime)
+
+
+
+
+
+
+
     return render_template ('crimemap.html')
 
 #delete listing function
@@ -35,49 +78,33 @@ def deletelisting():
     if request.method == 'POST':
         try:
             ID = request.form['listingID']
-
             con = database()
             cur = con.cursor()
-
-
             query = "DELETE FROM Homes WHERE listingID = %s"
-
             cur.execute(query,(ID,))
-
             msg = "Listing has been sucessfully deleted."
-
-
             con.commit()
-
             con.close()
-
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
             msg = "Unable to delete listing. Please check Listing ID."
             print("error")
-
-    elif request.method == 'GET':
-        try:
-            con = database()
-            cur = con.cursor()
-
-            query = "DELETE FROM Homes WHERE listingID = %s"
-
-            #cur.execute(query, (listingID,))
-
-            msg = "Listing has been sucessfully deleted."
-
-            con.commit()
-            con.close()
-
-            return render_template('Index.html')
-
-        except mysql.connector.Error as err:
-            print("Something went wrong: {}".format(err))
-            msg = "Unable to delete listing. Please check Listing ID."
-            print("error")
-
     return render_template('deletelisting.html', msg = msg)
+
+@app.route('/deletelisting/<listingID>', methods=['POST', 'GET'])
+def deletedirectlisting(listingID):
+    try:
+        con = database()
+        cur = con.cursor()
+
+        query = "DELETE FROM Homes WHERE listingID = %s"
+        cur.execute(query, (listingID, ))
+        con.commit()
+        con.close()
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        msg = "Unable to delete listing. Please check Listing ID."
+    return render_template("deletelisting.html", msg="Listing has been deleted.")
 
 
 @app.route('/addlisting', methods = ['POST', 'GET'])
@@ -181,7 +208,7 @@ def house(listingID):
 
 
     #query to get crime info
-    cur.execute("Select * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (districtname,))
+    cur.execute("SELECT * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (districtname,))
     crime = cur.fetchone()
 
     ##print(houseinfo)

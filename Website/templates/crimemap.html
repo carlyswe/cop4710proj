@@ -58,13 +58,13 @@
             <div class="crime-container">   
                 <div class="crime-box">
                     <p class="box-text-1">Total Arrests</p>
-                    <p class="box-text-2">0</p>
+                    <p class="box-text-2"> {{"{:.0f}".format(crime["Total_Arrests"]) }} </p>
                     <p class="box-text-3">(for all crimes)</p>
                 </div>
 
                 <div class="crime-box">
                     <p class="box-text-1">Safety Grade</p>
-                    <p class="box-text-2">F</p>
+                    <p class="box-text-2"> {{ crime["crimeGrade"] }}</p>
                     <p class="box-text-3">(A-F ratings)</p>
                 </div>
 
@@ -73,27 +73,27 @@
                     <div class="grid">
                         <div>
                             <p>Total Arrests</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Total_Arrests"]) }} </p>
                         </div>
                         <div>
                             <p>Manslaughter</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Manslaughter"]) }}</p>
                         </div>
                         <div>
                             <p>Assault</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Simple_Assault"]) }}</p>
                         </div>
                         <div>
                             <p>Robbery</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Larceny"]) }}</p>
                         </div>
                         <div>
                             <p>Kidnapping</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Kidnap_Abduction"]) }}</p>
                         </div>
                         <div>
                             <p>Burglary</p>
-                            <p>0</p>
+                            <p>{{"{:.0f}".format(crime["Burglary"]) }}</p>
                         </div>
                     </div>
                 </div>
