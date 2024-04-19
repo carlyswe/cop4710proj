@@ -26,42 +26,8 @@ def database():
 #crime map
 @app.route('/crimemap', methods=['GET', 'POST'])
 def crimemap():
-    if request.method == "POST":
-        try:
-            print("IN HEREEEEEE")
 
-            county = request.form['county']
-
-            county = str(county)
-
-            print(county)
-
-            con = database()
-            cur = con.cursor(dictionary = True)
-
-            cur.execute("SELECT * FROM CrimeStatistics WHERE CrimeStatistics.CountyName = %s", (county,))
-
-            print("below the query")
-
-            crime = cur.fetchone()
-
-            print(crime)
-
-            print("below the fetch")
-
-
-            con.close()
-
-        except mysql.connector.Error as err:
-            print("SOMETHING WENT WRONG !!!!!!!!!: {}".format(err))
-
-
-        return render_template("crimemap.html", crime=crime)
-
-    else:
-        print("here")
-        crime = {'Total_Arrests': 0, 'Manslaughter': 0, 'Simple_Assault': 0, 'Larceny': 0, 'Kidnap_Abduction': 0, 'Burglary': 0, 'crimeGrade': 'N/A'}
-    return render_template("crimemap.html", crime=crime)
+    return render_template("crimemap.html")
 
 
 
