@@ -1,231 +1,208 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Real Estate Site | Crime Map</title>
-    <meta name="description" content="Find homes within safe counties in Florida.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../static/css/styles.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <!-- Include jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Real Estate Site | Crime Map</title>
+        <meta name="description" content="Find homes within safe counties in Florida.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/css/styles.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <!-- Include jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Include Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+        <!-- Include Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
-    <!-- Include Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-</head>
+        <!-- Include Select2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    </head>
 
-<nav class="navbar">
-    <a class="logo nav-options" href="/">SafeHomes</a>
-    <a class="nav-options" href="/crimemap">crime map</a>
-    <a class="nav-options" href="/viewlistings">buy</a>
-    <a class="nav-options" href="/addlisting">sell</a>
-    <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
-</nav>
+    <nav class="navbar">
+        <a class="logo nav-options" href="/">SafeHomes</a>
+        <a class="nav-options" href="/crimemap">crime map</a>
+        <a class="nav-options" href="/viewlistings">buy</a>
+        <a class="nav-options" href="/addlisting">sell</a>
+        <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
+    </nav>
 
-<body class="wrapper-home">
-<div class="listing-header">
-    <h1>Crime Data</h1>
-</div>
-
-<div class="crime-reports">
-    <div class="crime-heading">
-        <h1 class="select-county-header">Select a County</h1>
-        <div class="county-option">
-            <select class="county-select" name="county">
-                <option value="">Select a county</option>
-                {% for county in counties %}
-                <option value="{{ county }}">{{ county }}</option>
-                {% endfor %}
-            </select>
-        </div>
+    <body class="wrapper-home">
+    <div class="listing-header">
+        <h1>Crime Data</h1>
     </div>
 
-    <div class="crime-chart-wrapper">
-        <div class="chart-container">
-            <canvas id="crimeTypePieChart"></canvas>
+    <div class="crime-reports">
+        <div class="crime-heading">
+            <h1 class="select-county-header">Select a County</h1>
+            <div class="county-option">
+                <select class="county-select" name="county">
+                    <option value="">Select a county</option>
+                    {% for county in counties %}
+                    <option value="{{ county }}">{{ county }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-        <div class="chart-container">
-            <canvas id="crimeRateBarChart"></canvas>
-        </div>
-    </div>
 
-    <div class="crime-table-wrapper">
-        <table id="crimeTable">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Selected County</th>
-                    <th>Average</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="crime-chart-wrapper">
+            <div class="chart-container">
+                <canvas id="crimeTypePieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="crimeRateBarChart"></canvas>
+            </div>
+        </div>
+
+        <div class="crime-table-wrapper">
+            <table id="crimeTable">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Selected County</th>
+                        <th>Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 <!-- Add the JavaScript code -->
-<script>
-    var pieChart;
-    var barChart;
+    <script>
+        var pieChart;
+        var barChart;
 
-    $(document).ready(function() {
-        $('.county-select').select2();
+        $(document).ready(function() {
+            $('.county-select').select2();
 
-        $('.county-select').on('change', function() {
-            var selectedCounty = $(this).val();
-            console.log('Selected county:', selectedCounty);
-            if (selectedCounty) {
-                fetchCountyData(selectedCounty);
-            } else {
-                clearCharts();
-            }
-        });
-    });
-
-    function fetchCountyData(county) {
-        fetch('/crimemap', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ county: county })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Data from server:', data);
-            updateCharts(data.selected_county_data, data.avg_data);
-            updateTable(data.selected_county_data, data.avg_data);
-        })
-        .catch(error => {
-            console.error('Error fetching county data:', error);
-        });
-    }
-
-    function updateCharts(countyData, avgData) {
-        var ctxPie = document.getElementById('crimeTypePieChart').getContext('2d');
-        var ctxBar = document.getElementById('crimeRateBarChart').getContext('2d');
-
-        var pieData = {
-            labels: Object.keys(countyData),
-            datasets: [{
-                data: Object.values(countyData),
-                backgroundColor: ['red', 'blue', 'yellow', 'green']
-            }]
-        };
-
-        var barData = {
-            labels: Object.keys(countyData),
-            datasets: [{
-                label: 'Selected County',
-                data: Object.values(countyData),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)'
-            }, {
-                label: 'Average',
-                data: Object.values(avgData),
-                backgroundColor: 'rgba(255, 99, 132, 0.6)'
-            }]
-        };
-
-        if (pieChart) {
-            pieChart.destroy();
-        }
-        pieChart = new Chart(ctxPie, {
-            type: 'pie',
-            data: pieData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
+            $('.county-select').on('change', function() {
+                var selectedCounty = $(this).val();
+                console.log('Selected county:', selectedCounty);
+                if (selectedCounty) {
+                    fetchCountyData(selectedCounty);
+                } else {
+                    clearCharts();
+                }
+            });
         });
 
-        if (barChart) {
-            barChart.destroy();
+        function fetchCountyData(county) {
+            fetch('/crimemap', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ county: county })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data from server:', data);
+                updateCharts(data.selected_county_data, data.avg_data);
+                updateTable(data.selected_county_data, data.avg_data);
+            })
+            .catch(error => {
+                console.error('Error fetching county data:', error);
+            });
         }
-        barChart = new Chart(ctxBar, {
-            type: 'bar',
-            data: barData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
+
+        function updateCharts(countyData, avgData) {
+            var ctxPie = document.getElementById('crimeTypePieChart').getContext('2d');
+            var ctxBar = document.getElementById('crimeRateBarChart').getContext('2d');
+
+            var pieData = {
+                labels: Object.keys(countyData),
+                datasets: [{
+                    data: Object.values(countyData),
+                    backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'cyan', 'orange', 'pink']
+                }]
+            };
+
+            var barData = {
+                labels: Object.keys(countyData),
+                datasets: [{
+                    label: 'Selected County',
+                    data: Object.values(countyData),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                }, {
+                    label: 'Average',
+                    data: Object.values(avgData),
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                }]
+            };
+
+            if (pieChart) {
+                pieChart.destroy();
             }
-        });
-    }
+            pieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: pieData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
 
-    function updateTable(countyData, avgData) {
-        var tableBody = document.querySelector('#crimeTable tbody');
-        tableBody.innerHTML = '';
+            if (barChart) {
+                barChart.destroy();
+            }
+            barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: barData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
 
-        for (var category in countyData) {
-            if (countyData.hasOwnProperty(category)) {
-                var row = document.createElement('tr');
-                var categoryCell = document.createElement('td');
-                var countyCell = document.createElement('td');
-                var avgCell = document.createElement('td');
+        function updateTable(countyData, avgData) {
+            var tableBody = document.querySelector('#crimeTable tbody');
+            tableBody.innerHTML = '';
 
-                categoryCell.textContent = category;
-                countyCell.textContent = countyData[category];
-                avgCell.textContent = avgData['Avg' + category] || 'N/A';
+            for (var category in countyData) {
+                if (countyData.hasOwnProperty(category)) {
+                    var row = document.createElement('tr');
+                    var categoryCell = document.createElement('td');
+                    var countyCell = document.createElement('td');
+                    var avgCell = document.createElement('td');
 
-                row.appendChild(categoryCell);
-                row.appendChild(countyCell);
-                row.appendChild(avgCell);
+                    categoryCell.textContent = category;
+                    countyCell.textContent = countyData[category];
+                    avgCell.textContent = avgData['Avg' + category] || 'N/A';
 
-                tableBody.appendChild(row);
+                    row.appendChild(categoryCell);
+                    row.appendChild(countyCell);
+                    row.appendChild(avgCell);
+
+                    tableBody.appendChild(row);
+                }
             }
         }
-    }
 
-    function clearCharts() {
-        if (pieChart) {
-            pieChart.destroy();
+        function clearCharts() {
+            if (pieChart) {
+                pieChart.destroy();
+            }
+            if (barChart) {
+                barChart.destroy();
+            }
+            var tableBody = document.querySelector('#crimeTable tbody');
+            tableBody.innerHTML = '';
         }
-        if (barChart) {
-            barChart.destroy();
-        }
-        var tableBody = document.querySelector('#crimeTable tbody');
-        tableBody.innerHTML = '';
-    }
-</script>
+    </script>
+<!-- I moved all of the styling to be in the .css file so they're all together -->
+    </body>
 
-<style>
-    .crime-chart-wrapper {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-
-    .chart-container {
-        width: 48%;
-    }
-
-    #crimeTable {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #crimeTable th,
-    #crimeTable td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-    }
-</style>
-</body>
-
-<footer class="footer">
-    <div class="footer-text">
-        <p>© Copyright SafeHomes 2024</p>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="footer-text">
+            <p>© Copyright SafeHomes 2024</p>
+        </div>
+    </footer>
 </html>

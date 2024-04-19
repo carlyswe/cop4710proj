@@ -927,6 +927,10 @@
     font-weight: normal;
 }
 
+.crime-selection{
+    font-family: Montserrat;
+}
+
 .county-name{
     font-family: Montserrat;
     border: 0; 
@@ -963,18 +967,34 @@
     display: flex; /* in case there are multiple charts  */
 }
 
-.crime-chart{
-    margin: auto;
-    margin-bottom: 100px;
-
-    /* these are just for the placeholder */
-    text-align: center;
-    vertical-align: center;
-    border-radius: 5px;
-    line-height: 500px;
-    /* */ 
-
-    width: 50%;
-    height: 500px;
+.county-select option{
     background-color: var(--tan);
+    font-family: Montserrat;
+}
+
+.county-select{
+    font-family: Montserrat;
+}
+.crime-chart-wrapper {
+    display: flex;
+    font-family: Montserrat;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    width: 48%;
+}
+
+#crimeTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Montserrat;
+}
+
+#crimeTable th,
+#crimeTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
 }
