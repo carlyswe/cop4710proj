@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 import mysql.connector
 import mysql
 #pip install mysql-connector or use pip3 if error occurs
@@ -23,10 +23,55 @@ def database():
 
     return db
 
-#crime map
 @app.route('/crimemap', methods=['GET', 'POST'])
 def crimemap():
-    return render_template ('crimemap.html')
+    db = database()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT DistrictName FROM Counties")
+    counties = cursor.fetchall()
+
+    selected_county_data = {}
+    avg_data = {}
+    if request.method == 'POST':
+        selected_county = request.json['county']
+        print(f"Selected county: {selected_county}")
+        # Fetch crime data for selected county
+        cursor.execute("""
+            SELECT 
+                Total_Arrests, Burglary, Larceny, Motor_Vehicle_Theft,
+                Manslaughter, Kidnap_Abduction, Arson, Simple_Assault,
+                Drug_Arrest, Bribery, Embezzlement, Fraud,
+                Counterfeit_Forgery, Extortion_Blackmail, Intimidation,
+                Prostitution, NonForcible_Sex_Offenses, Stolen_Property,
+                DUI, Destruction_Vandalism, Gambling, Weapons_Violations,
+                Liquor_Law_Violations, Misc
+            FROM CrimeStatistics
+            WHERE CountyName = %s
+        """, (selected_county,))
+        selected_county_data = cursor.fetchone()
+        # Fetch average data for comparison
+        cursor.execute("""
+            SELECT 
+                AVG(Total_Arrests) as AvgTotal_Arrests,
+                AVG(Burglary) as AvgBurglary,
+                AVG(Larceny) as AvgLarceny,
+                AVG(Motor_Vehicle_Theft) as AvgMotor_Vehicle_Theft
+            FROM CrimeStatistics
+        """)
+        avg_data = cursor.fetchone()
+
+        print("Selected county data:", selected_county_data)
+        print("Average data:", avg_data)
+
+        return jsonify({
+            'selected_county_data': selected_county_data,
+            'avg_data': avg_data
+        })
+
+    cursor.close()
+    db.close()
+
+    return render_template('crimemap.html', counties=[county['DistrictName'] for county in counties])
 
 #delete listing function
 @app.route('/deletelisting', methods = ['POST', 'GET'])
@@ -127,20 +172,16 @@ def addlisting():
 
     return render_template('addlisting.html', msg = msg)
 
-@app.route('/viewlistings', methods = ['POST', 'GET'])
+@app.route('/viewlistings', methods=['POST', 'GET'])
 def viewListings():
-
     con = database()
+    cur = con.cursor(dictionary=True)
 
-    cur = con.cursor(dictionary = True)
-
-    cur.execute('SELECT * FROM Homes LIMIT 6' )
+    # Modify the query to fetch latitude and longitude along with other details
+    cur.execute('SELECT listingID, street, latitude, longitude FROM Homes LIMIT 10')
     rows = cur.fetchall()
 
-    con.close()
-
-    return render_template("viewlistings.html", rows = rows)
-
+    return render_template("viewlistings.html", rows=rows)
 
 @app.route('/house/<listingID>', methods = ['POST', 'GET'])
 def house(listingID):

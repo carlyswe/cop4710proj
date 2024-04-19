@@ -1,143 +1,99 @@
 <!DOCTYPE html>
-    <html>
-        <head> 
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title>Real Estate Site | View Listings</title>
-            <meta name="description" content="Find homes within safe counties in Florida.">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="../static/css/styles.css"/>
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">  
-        </head>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Real Estate Site | View Listings</title>
+    <meta name="description" content="Find homes within safe counties in Florida.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArM8eZGIDj8IzGYkEUwh1dC6y9-HrfdZ4"></script>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 27.994402, lng: -81.760254},
+                zoom: 10
+            });
 
-        <nav class="navbar">
-            <a class="logo nav-options" href="/">SafeHomes</a>
-            <a class="nav-options" href="/crimemap">crime map</a>
-            <a class="nav-options" href="/viewlistings">buy</a>
-            <a class="nav-options" href="/addlisting">sell</a>
-            <a class="join nav-options" href="www.google.com">join / signup</a>
-        </nav>
+            {% for row in rows %}
+            var marker = new google.maps.Marker({
+                position: { lat: {{ row['latitude'] }}, lng: {{ row['longitude'] }} },
+                map: map,
+                title: "{{ row['street'] }}",
+                icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 5,
+                fillColor: 'blue',
+                fillOpacity: 1,
+                strokeWeight: 0
+                }
+            });
 
-        <body class="wrapper-home">
-            <div class="map">
-                <img src="/static/images/map-placeholder.png"/>
-            </div>
+            marker.addListener('click', function() {
+                window.location.href = "{{ url_for('house', listingID=row['listingID']) }}";
+            });
+            {% endfor %}
+        }
+    </script>
+</head>
 
-            <div class="filter-header">
-                <h1>Filter Options</h1>
-            </div>
+<nav class="navbar">
+    <a class="logo nav-options" href="/">SafeHomes</a>
+    <a class="nav-options" href="/crimemap">crime map</a>
+    <a class="nav-options" href="/viewlistings">buy</a>
+    <a class="nav-options" href="/addlisting">sell</a>
+    <a class="join nav-options" href="www.google.com">join / signup</a>
+</nav>
 
-            
-            <!-- No idea how to do the filtering formatting. I just made the buttons at least -->
-            <!-- Ideally, the button temporary text should get replaced with the filter option once selected. -->
-            <div class="filter-wrapper">
-                <div class="filter-options">
-                    <div class="dropdown">
-                        <button class="drop">Counties</button>
-                        <div class="dropdown-content">
-                            <form action = "" method = "POST">
-                                <div>   
-                                    <button class="county-name" type="submit" name="county" value="Leon">Leon</button>
-                                </div>
-                                <div>   
-                                    <button class="county-name" type="submit" name="county" value="Okaloosa">Okaloosa</button>
-                                </div>
-                                
-                            </form>
-                        </div>
-                    </div>
+<body class="wrapper-home" onload="initMap()">
+    <div id="map" style="height: 400px;"></div>
 
-                    <div class="dropdown">
-                        <button class="drop">Cities</button>
-                        <div class="dropdown-content">
-                            <form action = "" method = "POST">
-                                <div>   
-                                    <button class="county-name" type="submit" name="city" value="Tallahassee">Tallahassee</button>
-                                </div>
-                                <div>   
-                                    <button class="county-name" type="submit" name="city" value="Orlando">Orlando</button>
-                                </div>
-                                
-                            </form>
-                        </div>
-                    </div>
+    <div class="filter-header">
+        <h1>Filter Options</h1>
+    </div>
 
-                    <!-- make each dropdown a form maybe?  -->
-                    <div class="dropdown">
-                        <button class="drop">Crime Rating</button>
-                        <div class="dropdown-content">
-                            <form action = "" method = "POST">
-                                <div>   
-                                    <button class="county-name" type="submit" name="rating" value="A">A</button>
-                                </div>
-                                <div>   
-                                    <button class="county-name" type="submit" name="rating" value="B">B</button>
-                                </div>
-                                
-                            </form>
-                        </div>
-                    </div>
+    <div class="filter-wrapper">
+        <div class="filter-options">
+            //Implement similar filter options as crimemap.html
+        </div>
+    </div>
 
-                    <div class="dropdown">
-                        <button class="drop">School Grade</button>
-                        <div class="dropdown-content">
-                            <form action = "" method = "POST">
-                                <div>   
-                                    <button class="county-name" type="submit" name="grade" value="A">A</button>
-                                </div>
-                                <div>   
-                                    <button class="county-name" type="submit" name="grade" value="B">B</button>
-                                </div>
-                                
-                            </form>
-                        </div>
-                    </div>
+    <div class="generate">
+        <form action="" method="POST">
+            <button class="generate-button" type="submit">Generate Listings</button>
+        </form>
+    </div>
+
+    <div class="houses">
+        {% for row in rows %}
+        <div class="house-container">
+            <a href="{{ url_for('house', listingID=row['listingID']) }}" class="house-option">
+                <img src="{{ row['photo'] }}" alt="house" onerror="console.log('Error loading image: ' + this.src)"/>
+                <div>
+                    <p class="view-price">${{ row["price"] }}</p>
+                    <ion-icon name="heart">
+                        <div class='red-bg'></div>
+                    </ion-icon>
                 </div>
-            </div>
+                <p class="view-address">{{ row["street"] }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
 
-            <div class="generate">
-                <form action = "" method = "POST">
-                    <button class = "generate-button" type="submit">Generate Listings</button>
-                </form>
-            </div>
+<footer class="footer">
+    <div class="footer-text">
+        <p>© Copyright SafeHomes 2024</p>
+    </div>
+</footer>
 
-            
-            <div class="houses">
-                {%for row in rows%}
-                <div class="house-container">
-                    <a href="{{url_for('house',listingID=row['listingID'])}}" class="house-option">
-                        <img src="{{ row["photo"] }}" alt="house"/>
-                        <div>
-                            <p class="view-price"> ${{ row["price"] }}</p>
-                            <ion-icon name="heart">
-                                <div class='red-bg'></div>
-                             </ion-icon>
-                        </div>
-                        <p class="view-address">{{ row["street"] }}</p>
-                    </a>
-                </div>
-                {%endfor%}
-            </div>
-            
-            
-            
-
-
-        </body>
-
-        <footer class="footer">
-            <div class="footer-text">
-                <p>© Copyright SafeHomes 2024 </p>
-            </div>
-        </footer>
-
-        <script src="main.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </html>
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

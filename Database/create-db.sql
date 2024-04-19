@@ -2,8 +2,8 @@ CREATE DATABASE IF NOT EXISTS realtorsite;
 USE realtorsite; 
 
 
-DROP TABLE IF EXISTS Homes;  
-DROP TABLE IF EXISTS ZipCodes; 
+DROP TABLE IF EXISTS Homes;
+DROP TABLE IF EXISTS ZipCodes;
 DROP TABLE IF EXISTS Cities; 
 DROP TABLE IF EXISTS Schools;
 DROP TABLE IF EXISTS StatisticsOf; 
@@ -74,22 +74,27 @@ CREATE TABLE ZipCodes (
     County VARCHAR(200) 
 )Engine = InnoDB;
 
-CREATE TABLE Homes( 
-	listingID VARCHAR(64) PRIMARY KEY, 
-	ZipCode INT NOT NULL, 
+CREATE TABLE Homes(
+    listingID INT AUTO_INCREMENT PRIMARY KEY,
+    ZipCode INT NOT NULL,
     property_url VARCHAR(250) DEFAULT 'www.google.com',
     style VARCHAR(200),
-    street VARCHAR(250), 
-    unit VARCHAR(200), 
+    street VARCHAR(250),
+    unit VARCHAR(200),
     city VARCHAR(64),
-    beds INT DEFAULT 0, 
-    full_baths INT DEFAULT 0, 
-    half_baths INT DEFAULT 0, 
-    sqft INT DEFAULT 2000, 
-    year_built INT DEFAULT 2010, 
-	price float DEFAULT 0, 
-	photo BLOB, 
+    beds INT DEFAULT 0,
+    full_baths INT DEFAULT 0,
+    half_baths INT DEFAULT 0,
+    sqft INT DEFAULT 2000,
+    year_built INT DEFAULT 2010,
+    price FLOAT DEFAULT 0,
+    photo VARCHAR(250),
+    type VARCHAR(100),  -- New type attribute
+    latitude DECIMAL(10, 8),  -- New latitude attribute
+    longitude DECIMAL(11, 8),  -- New longitude attribute
     FOREIGN KEY (ZipCode) REFERENCES ZipCodes(ZipCode)
-    on update cascade
-    on delete no action 
-)Engine = InnoDB; 
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION
+) ENGINE = InnoDB;
+
+
