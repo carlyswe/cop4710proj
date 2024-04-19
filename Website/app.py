@@ -176,7 +176,7 @@ def viewListings():
     cur = con.cursor(dictionary=True)
 
     # Modify the query to fetch latitude and longitude along with other details
-    cur.execute('SELECT listingID, street, photo, latitude, longitude FROM Homes LIMIT 10')
+    cur.execute('SELECT listingID, price, street, photo, latitude, longitude FROM Homes LIMIT 9')
     rows = cur.fetchall()
 
     return render_template("viewlistings.html", rows=rows)
