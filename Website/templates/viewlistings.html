@@ -76,7 +76,7 @@
             <a href="{{ url_for('house', listingID=row['listingID']) }}" class="house-option">
                 <img src="{{ row['photo'] }}" alt="house" onerror="console.log('Error loading image: ' + this.src)"/>
                 <div>
-                    <p class="view-price">${{ row["price"] }}</p>
+                    <p class="view-price">${{ "{:,.2f}".format(row["price"]) }}</p>
                     <ion-icon name="heart">
                         <div class='red-bg'></div>
                     </ion-icon>

@@ -283,13 +283,15 @@
     display: flex;
     border-radius: 5px;
     flex-direction: column;
-    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
     background-color: var(--tan);
     width: auto;
     padding-left: 3%;
     padding-right: 3%;
     min-width: 600px;
-    margin-top: 120px;
+    margin-top: auto;
+    margin-bottom: 50px;
 }
 
 .house-photo{
@@ -298,8 +300,8 @@
     border-radius: 5px;
     margin-right: auto;
     margin-top: 40px;
-    width: 80%;
-    height: 70%;
+    width: 90%;
+    height: 80%;
     background-color: var(--snow);
 }
 
@@ -412,18 +414,25 @@
     margin: auto;
     text-align: center;
     margin-bottom: 100px;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.edit-button a, .delete-button a{
+
+.edit-button , .delete-button {
     text-decoration: underline; 
     color: var(--earth);
+    min-width: 100px;
     background-color: var(--sun);
     font-size: calc(0.8vw + 0.8vh + 1vmin);
     padding: 30px;
     border-radius: 5px;
 
+}
+
+.edit, .delete{
+    color: var(--earth);
 }
 
 .schools{
@@ -753,12 +762,6 @@
                 V I E W  L I S T I N G S
 **********************************************************/
 
-/** TEMPORARY MAP PLACEHOLDER **/
-.map img{
-    width: 100%; 
-    height: 400px;
-    object-fit: cover;
-}
 
 .filter-header{
     width: 100%;
