@@ -70,5 +70,5 @@ def process_csv_file(file_path):
             db.close()
 
 # Example usage
-process_csv_file(r'/Users/coledunlop/PycharmProjects/cop4710proj/Data/HomeHarvest_Florida_20240327_213248_forrent.csv')
-process_csv_file(r'/Users/coledunlop/PycharmProjects/cop4710proj/Data/HomeHarvest_Florida_20240327_232001_forsale.csv')
+process_csv_file(r'/Users/adelinebelova/Data/forrent.csv')
+process_csv_file(r'/Users/adelinebelova/Data/forsale.csv')
