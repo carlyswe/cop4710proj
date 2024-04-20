@@ -60,15 +60,63 @@
 
     <div class="filter-wrapper">
         <div class="filter-options">
-            //Implement similar filter options as crimemap.html
+            <form action = "{{ url_for('viewListings') }}" method = "POST">
+
+            filter by city, school district grade, or safety grade
+            <br>
+
+
+                 <label for="cities">City:</label>
+                    <select id="city" name="city">
+                        <option value="all">All Cities</option>
+                        {% for city in cities %}
+                            <option value = {{city[ "City"] }} > {{city[ "City"] }} </option>
+                        {% endfor %}
+                    </select>
+
+
+                OR
+
+                <label for="schoolGrade"> School District Grade:</label>
+                    <select id="schoolGrade" name="schoolGrade">
+                        <option value="all">All Grades</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="F">F</option>
+                    </select>
+
+               OR
+
+                <label for="safetyGrade">Safety Grade:</label>
+                    <select id="safetyGrade" name ="safetyGrade">
+                        <option value="all">All Grades</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="C-">C-</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="D-">D-</option>
+                        <option value="F">F</option>
+                    </select>
+
+                <div class="generate">
+                    <button class="generate-button" type="submit">Generate Listings</button>
+                </div>
+
+            </form>
+
         </div>
     </div>
 
-    <div class="generate">
-        <form action="" method="POST">
-            <button class="generate-button" type="submit">Generate Listings</button>
-        </form>
-    </div>
+    {{ numlistings[0] }} listings matching
 
     <div class="houses">
         {% for row in rows %}

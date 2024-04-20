@@ -172,15 +172,107 @@ def addlisting():
 
 @app.route('/viewlistings', methods=['POST', 'GET'])
 def viewListings():
+
+    #if they have submitted filtering options
+    if request.method == 'POST':
+        form_data = request.form
+        print(form_data)
+        safetygrade = request.form['safetyGrade']
+        city = request.form['city']
+        schoolgrade = request.form['schoolGrade']
+
+
+        if(city != "all"):
+            con = database()
+            cur = con.cursor(dictionary=True)
+
+            cur.execute('SELECT listingID, street, photo, latitude, longitude, price FROM Homes WHERE city = %s ORDER BY RAND() LIMIT 24',
+                (city,))
+            rows = cur.fetchall()
+
+            con.close()
+
+            con = database()
+            cur = con.cursor()
+
+            cur.execute('''SELECT COUNT(*) FROM Homes WHERE City = %s''', (city,))
+            numlistings = cur.fetchone()
+
+            con.close()
+
+        if(safetygrade != "all"):
+            con = database()
+            cur = con.cursor(dictionary=True)
+            cur.execute("SELECT Homes.* FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
+            rows = cur.fetchall()
+
+            con.close()
+            con = database()
+            cur = con.cursor()
+
+            cur.execute("SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ", (safetygrade,))
+            numlistings = cur.fetchone()
+
+            con.close()
+
+
+        if(schoolgrade != "all"):
+            con = database()
+            cur = con.cursor(dictionary=True)
+
+            cur.execute('SELECT Homes.* FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24', (schoolgrade,))
+            rows = cur.fetchall()
+
+            con.close()
+
+            con = database()
+            cur = con.cursor()
+
+            cur.execute('''SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s''', (schoolgrade,))
+            numlistings = cur.fetchone()
+
+            con.close()
+
+        con = database()
+        cur = con.cursor(dictionary=True)
+
+        cur.execute("SELECT DISTINCT City FROM ZipCodes ORDER BY City ASC")
+        cities = cur.fetchall()
+
+        con.close()
+
+        return render_template("viewlistings.html", rows=rows, cities=cities, numlistings=numlistings)
+
+
     con = database()
     cur = con.cursor(dictionary=True)
 
     # Modify the query to fetch latitude and longitude along with other details
-    cur.execute('SELECT listingID, street, photo, latitude, longitude FROM Homes LIMIT 10')
+    cur.execute('SELECT listingID, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
     rows = cur.fetchall()
 
-    return render_template("viewlistings.html", rows=rows)
+    con.close()
 
+    con = database()
+    cur = con.cursor(dictionary=True)
+
+
+    cur.execute("SELECT DISTINCT City FROM ZipCodes ORDER BY City ASC")
+    cities = cur.fetchall()
+
+    con.close()
+
+    con = database()
+    cur = con.cursor()
+
+    cur.execute('SELECT COUNT(*) FROM Homes')
+    numlistings = cur.fetchone()
+
+    print(numlistings)
+
+    con.close()
+
+    return render_template("viewlistings.html", rows=rows, cities=cities, numlistings=numlistings)
 @app.route('/house/<listingID>', methods = ['POST', 'GET'])
 def house(listingID):
     con = database()
