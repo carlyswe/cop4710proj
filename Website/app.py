@@ -200,7 +200,7 @@ def viewListings():
 
             con.close()
 
-        if(safetygrade != "all"):
+        elif(safetygrade != "all"):
             con = database()
             cur = con.cursor(dictionary=True)
             cur.execute("SELECT Homes.* FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
@@ -216,7 +216,7 @@ def viewListings():
             con.close()
 
 
-        if(schoolgrade != "all"):
+        elif(schoolgrade != "all"):
             con = database()
             cur = con.cursor(dictionary=True)
 
@@ -229,6 +229,28 @@ def viewListings():
             cur = con.cursor()
 
             cur.execute('''SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s''', (schoolgrade,))
+            numlistings = cur.fetchone()
+
+            con.close()
+
+        else:
+
+            con = database()
+            cur = con.cursor(dictionary=True)
+
+            # Modify the query to fetch latitude and longitude along with other details
+            cur.execute(
+                'SELECT listingID, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
+            rows = cur.fetchall()
+            con.close()
+
+            con = database()
+            cur = con.cursor()
+
+            con = database()
+            cur = con.cursor()
+
+            cur.execute('SELECT COUNT(*) FROM Homes')
             numlistings = cur.fetchone()
 
             con.close()
@@ -271,6 +293,8 @@ def viewListings():
     print(numlistings)
 
     con.close()
+
+    print(rows)
 
     return render_template("viewlistings.html", rows=rows, cities=cities, numlistings=numlistings)
 @app.route('/house/<listingID>', methods = ['POST', 'GET'])
