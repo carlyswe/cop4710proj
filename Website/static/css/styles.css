@@ -283,13 +283,15 @@
     display: flex;
     border-radius: 5px;
     flex-direction: column;
-    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
     background-color: var(--tan);
     width: auto;
     padding-left: 3%;
     padding-right: 3%;
     min-width: 600px;
-    margin-top: 120px;
+    margin-top: auto;
+    margin-bottom: 50px;
 }
 
 .house-photo{
@@ -298,8 +300,8 @@
     border-radius: 5px;
     margin-right: auto;
     margin-top: 40px;
-    width: 80%;
-    height: 70%;
+    width: 90%;
+    height: 80%;
     background-color: var(--snow);
 }
 
@@ -412,18 +414,25 @@
     margin: auto;
     text-align: center;
     margin-bottom: 100px;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.edit-button a, .delete-button a{
+
+.edit-button , .delete-button {
     text-decoration: underline; 
     color: var(--earth);
+    min-width: 100px;
     background-color: var(--sun);
     font-size: calc(0.8vw + 0.8vh + 1vmin);
     padding: 30px;
     border-radius: 5px;
 
+}
+
+.edit, .delete{
+    color: var(--earth);
 }
 
 .schools{
@@ -753,12 +762,6 @@
                 V I E W  L I S T I N G S
 **********************************************************/
 
-/** TEMPORARY MAP PLACEHOLDER **/
-.map img{
-    width: 100%; 
-    height: 400px;
-    object-fit: cover;
-}
 
 .filter-header{
     width: 100%;
@@ -927,6 +930,10 @@
     font-weight: normal;
 }
 
+.crime-selection{
+    font-family: Montserrat;
+}
+
 .county-name{
     font-family: Montserrat;
     border: 0; 
@@ -942,12 +949,9 @@
 .county-option{ 
     margin: auto;
     text-align: center;
+    font-family: Montserrat; 
 }
 
-.county-option div{
-    margin: auto;
-    
-}
 
 .crime-heading{
     padding-bottom: 100px;
@@ -960,21 +964,39 @@
 
 .crime-chart-wrapper{
     width: 100%;
-    display: flex; /* in case there are multiple charts  */
+    display: flex;
+    font-family: Montserrat;
+    justify-content: space-evenly;
+    padding-bottom: 50px !important;
 }
 
-.crime-chart{
-    margin: auto;
-    margin-bottom: 100px;
 
-    /* these are just for the placeholder */
-    text-align: center;
-    vertical-align: center;
-    border-radius: 5px;
-    line-height: 500px;
-    /* */ 
-
-    width: 50%;
-    height: 500px;
+.county-select{
     background-color: var(--tan);
+    width: 30%;
+    border-radius: 5px;
 }
+
+
+.chart-container {
+    width: 48%;
+    padding-bottom: 50px !important;
+}
+
+#crimeTable {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    font-family: Montserrat;
+    margin-bottom: 50px !important;
+}
+
+#crimeTable th,
+#crimeTable td {
+    border: 2px solid var(--earth);
+    padding: 8px;
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
