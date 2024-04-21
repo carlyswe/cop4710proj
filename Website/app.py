@@ -140,7 +140,8 @@ def addlisting():
             city = request.form['city']
             zipcode = request.form['zipcode']
             unit = request.form['unit'] or None
-            style = request.form['style'] or None
+            longitude = request.form['longitude'] or None
+            latitude = request.form['latitude'] or None
 
             print("here")
 
@@ -149,9 +150,9 @@ def addlisting():
             con = database()
             cur = con.cursor()
 
-            query = 'INSERT INTO Homes (beds, full_baths, half_baths, sqft, year_built, style, street, unit, city, ZipCode, price, photo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+            query = 'INSERT INTO Homes (beds, full_baths, half_baths, sqft, year_built, street, unit, city, ZipCode, price, photo, longitude, latitude) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
-            vals = (numbed, numfullbaths, numhalfbaths, sqft, yearbuilt, style, street, unit, city, zipcode, price, photourl)
+            vals = (numbed, numfullbaths, numhalfbaths, sqft, yearbuilt, street, unit, city, zipcode, price, photourl, longitude, latitude)
 
             cur.execute(query, vals)
 
