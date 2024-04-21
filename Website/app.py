@@ -200,27 +200,51 @@ def viewListings():
 
             con.close()
 
+        #if saftey grade is selected
         elif(safetygrade != "all"):
-            con = database()
-            cur = con.cursor(dictionary=True)
-            cur.execute("SELECT Homes.* FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
-            rows = cur.fetchall()
+            #if school grade isnt selected then search only by safety grade
+            if(schoolgrade == "all"):
+                print("only safety")
+                con = database()
+                cur = con.cursor(dictionary=True)
+                cur.execute("SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
+                rows = cur.fetchall()
 
-            con.close()
-            con = database()
-            cur = con.cursor()
+                con.close()
+                con = database()
+                cur = con.cursor()
 
-            cur.execute("SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ", (safetygrade,))
-            numlistings = cur.fetchone()
+                cur.execute("SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ", (safetygrade,))
+                numlistings = cur.fetchone()
 
-            con.close()
+                con.close()
+
+            #query for both school grade and safety grade
+            else:
+
+                print("here")
+                con = database()
+                cur = con.cursor(dictionary=True)
+                cur.execute("SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE CrimeStatistics.crimeGrade = %s AND Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24 ", (safetygrade, schoolgrade))
+                rows = cur.fetchall()
+
+                con.close()
+
+                con = database()
+                cur = con.cursor()
+
+                cur.execute('SELECT COUNT(*) FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE CrimeStatistics.crimeGrade = %s AND Counties.Grade2022 = %s ', (safetygrade, schoolgrade))
+                numlistings = cur.fetchone()
+
+                con.close()
 
 
+        #if only school grade is selected
         elif(schoolgrade != "all"):
             con = database()
             cur = con.cursor(dictionary=True)
 
-            cur.execute('SELECT Homes.* FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24', (schoolgrade,))
+            cur.execute('SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24', (schoolgrade,))
             rows = cur.fetchall()
 
             con.close()
@@ -262,6 +286,8 @@ def viewListings():
         cities = cur.fetchall()
 
         con.close()
+
+        print(rows)
 
         return render_template("viewlistings.html", rows=rows, cities=cities, numlistings=numlistings)
 
