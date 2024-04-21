@@ -38,7 +38,7 @@ def crimemap():
         # Fetch crime data for selected county
         cursor.execute("""
             SELECT 
-                Total_Arrests, Burglary, Larceny, Motor_Vehicle_Theft,
+                Burglary, Larceny, Motor_Vehicle_Theft,
                 Manslaughter, Kidnap_Abduction, Arson, Simple_Assault,
                 Drug_Arrest, Bribery, Embezzlement, Fraud,
                 Counterfeit_Forgery, Extortion_Blackmail, Intimidation,

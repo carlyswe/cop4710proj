@@ -46,7 +46,7 @@
 <nav class="navbar">
     <a class="logo nav-options" href="/">SafeHomes</a>
     <a class="nav-options" href="/crimemap">crime map</a>
-    <a class="nav-options" href="/viewlistings">buy</a>
+    <a class="nav-options" href="/viewlistings">buy/rent</a>
     <a class="nav-options" href="/addlisting">sell</a>
     <a class="join nav-options" href="https://github.com/carlyswe/cop4710proj" target="_blank">github</a>
 </nav>
@@ -61,24 +61,26 @@
     <div class="filter-wrapper">
         <div class="filter-options">
             <form action = "{{ url_for('viewListings') }}" method = "POST">
+            <div class="filter-title">
+                <h1>Select a city, school district grade, or county safety grade:</h1>
+            </div>
 
-            filter by city, school district grade, or safety grade
-            <br>
-
-
-                 <label for="cities">City:</label>
-                    <select id="city" name="city">
+            <div class="filter-dropdowns">
+                <div class="city">
+                    <h3 class="filter-subject">City</h3>
+                    <select id="city" class="drop" name="city">
                         <option value="all">All Cities</option>
                         {% for city in cities %}
                             <option value = {{city[ "City"] }} > {{city[ "City"] }} </option>
                         {% endfor %}
                     </select>
+                </div>
+                
+                <p class="or">OR</p>
 
-
-                OR
-
-                <label for="schoolGrade"> School District Grade:</label>
-                    <select id="schoolGrade" name="schoolGrade">
+                <div class="school-district">
+                    <h3 class="filter-subject">School District Grade</h3>
+                    <select id="schoolGrade" class="drop" name="schoolGrade">
                         <option value="all">All Grades</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -86,11 +88,12 @@
                         <option value="D">D</option>
                         <option value="F">F</option>
                     </select>
+                </div>
+                
 
-               OR
-
-                <label for="safetyGrade">Safety Grade:</label>
-                    <select id="safetyGrade" name ="safetyGrade">
+                <div class="safety-grade">
+                    <h3 class="filter-subject" for="safetyGrade">Safety Grade </h3>
+                    <select id="safetyGrade" class="drop" name ="safetyGrade">
                         <option value="all">All Grades</option>
                         <option value="A+">A+</option>
                         <option value="A">A</option>
@@ -106,17 +109,20 @@
                         <option value="D-">D-</option>
                         <option value="F">F</option>
                     </select>
+                </div>
+            </div>
 
                 <div class="generate">
                     <button class="generate-button" type="submit">Generate Listings</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 
-    {{ numlistings[0] }} listings matching
+    <div class="num-listings">
+        <h3>{{ numlistings[0] }} listings matching</h3>
+    </div>
+    
 
     <div class="houses">
         {% for row in rows %}
