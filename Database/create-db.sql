@@ -28,7 +28,6 @@ CREATE TABLE Schools(
 
 CREATE TABLE CrimeStatistics( 
 	statisticsID VARCHAR(64) PRIMARY KEY, 
-    DistrictNumber INT,  
 	totalCrimeIndex INT NOT NULL, 
     Total_Arrests DECIMAL(10,2),
     Population INT, 
@@ -56,9 +55,6 @@ CREATE TABLE CrimeStatistics(
     Liquor_Law_Violations DECIMAL(10,2),
     Misc DECIMAL(10,2), 
     
-    FOREIGN KEY(DistrictNumber) REFERENCES Counties(DistrictNumber)
-    on update cascade
-    on delete no action 
 )ENGINE = InnoDB;  
 
 CREATE TABLE StatisticsOf( #lookup table to find a county's crime statistic id
