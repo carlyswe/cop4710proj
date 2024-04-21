@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS ZipCodes;
 DROP TABLE IF EXISTS Cities; 
 DROP TABLE IF EXISTS Schools;
 DROP TABLE IF EXISTS StatisticsOf; 
-DROP TABLE IF EXISTS Counties; 
 DROP TABLE IF EXISTS CrimeStatistics;
+DROP TABLE IF EXISTS Counties; 
 
 CREATE TABLE Counties( 
 	DistrictNumber INT PRIMARY KEY, 
@@ -28,7 +28,7 @@ CREATE TABLE Schools(
 
 CREATE TABLE CrimeStatistics( 
 	statisticsID VARCHAR(64) PRIMARY KEY, 
-    CountyName VARCHAR(200), 
+    DistrictNumber INT,  
 	totalCrimeIndex INT NOT NULL, 
     Total_Arrests DECIMAL(10,2),
     Population INT, 
@@ -54,7 +54,11 @@ CREATE TABLE CrimeStatistics(
     Gambling DECIMAL(10,2),
     Weapons_Violations DECIMAL(10,2),
     Liquor_Law_Violations DECIMAL(10,2),
-    Misc DECIMAL(10,2)
+    Misc DECIMAL(10,2), 
+    
+    FOREIGN KEY(DistrictNumber) REFERENCES Counties(DistrictNumber)
+    on update cascade
+    on delete no action 
 )ENGINE = InnoDB;  
 
 CREATE TABLE StatisticsOf( #lookup table to find a county's crime statistic id
