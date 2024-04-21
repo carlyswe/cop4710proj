@@ -186,7 +186,7 @@ def viewListings():
             con = database()
             cur = con.cursor(dictionary=True)
 
-            cur.execute('SELECT listingID, street, photo, latitude, longitude, price FROM Homes WHERE city = %s ORDER BY RAND() LIMIT 24',
+            cur.execute('SELECT listingID, city, street, photo, latitude, longitude, price FROM Homes WHERE city = %s ORDER BY RAND() LIMIT 24',
                 (city,))
             rows = cur.fetchall()
 
@@ -207,7 +207,7 @@ def viewListings():
                 print("only safety")
                 con = database()
                 cur = con.cursor(dictionary=True)
-                cur.execute("SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
+                cur.execute("SELECT Homes.listingID, Homes.city, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName WHERE CrimeStatistics.crimeGrade =%s ORDER BY RAND() LIMIT 24 ", (safetygrade,))
                 rows = cur.fetchall()
 
                 con.close()
@@ -225,7 +225,7 @@ def viewListings():
                 print("here")
                 con = database()
                 cur = con.cursor(dictionary=True)
-                cur.execute("SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE CrimeStatistics.crimeGrade = %s AND Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24 ", (safetygrade, schoolgrade))
+                cur.execute("SELECT Homes.listingID, Homes.city, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN CrimeStatistics ON ZipCodes.County = CrimeStatistics.CountyName JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE CrimeStatistics.crimeGrade = %s AND Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24 ", (safetygrade, schoolgrade))
                 rows = cur.fetchall()
 
                 con.close()
@@ -244,7 +244,7 @@ def viewListings():
             con = database()
             cur = con.cursor(dictionary=True)
 
-            cur.execute('SELECT Homes.listingID, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24', (schoolgrade,))
+            cur.execute('SELECT Homes.listingID, Homes.city, Homes.street, Homes.photo, Homes.latitude, Homes.longitude, Homes.price FROM Homes JOIN ZipCodes ON Homes.ZipCode = ZipCodes.ZipCode JOIN Counties ON ZipCodes.County = Counties.DistrictName WHERE Counties.Grade2022 = %s ORDER BY RAND() LIMIT 24', (schoolgrade,))
             rows = cur.fetchall()
 
             con.close()
@@ -264,7 +264,7 @@ def viewListings():
 
             # Modify the query to fetch latitude and longitude along with other details
             cur.execute(
-                'SELECT listingID, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
+                'SELECT listingID, city, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
             rows = cur.fetchall()
             con.close()
 
@@ -296,7 +296,7 @@ def viewListings():
     cur = con.cursor(dictionary=True)
 
     # Modify the query to fetch latitude and longitude along with other details
-    cur.execute('SELECT listingID, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
+    cur.execute('SELECT listingID, city, street, photo, latitude, longitude, price FROM Homes ORDER BY RAND() LIMIT 24')
     rows = cur.fetchall()
 
     con.close()
