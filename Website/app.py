@@ -54,6 +54,8 @@ def crimemap():
             SELECT 
                 AVG(Total_Arrests) as AvgTotal_Arrests,
                 AVG(Burglary) as AvgBurglary,
+                AVG(Arson) as AvgArson,
+                AVG(Bribery) as AvgBribery,
                 AVG(Larceny) as AvgLarceny,
                 AVG(Motor_Vehicle_Theft) as AvgMotor_Vehicle_Theft
             FROM CrimeStatistics
