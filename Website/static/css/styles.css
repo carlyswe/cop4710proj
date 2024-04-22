@@ -345,7 +345,7 @@
     padding-left: 15px;
 }
 
-.bed, .bath, .half-bath, .sqft, .address{
+.bed, .bath, .half-bath, .sqft, .address, .city-info{
     font-size: calc(0.7vw + 0.7vh + 1vmin);
     text-align:center;
     padding-right: 15px;
@@ -533,7 +533,20 @@
     margin: auto;
     min-width: 200px;
     color: var(--earth);
+    text-align: center;
 
+}
+
+.district-grade{
+    border-top-left-radius: 0 !important; 
+    border-top-right-radius: 0 !important;
+    padding-bottom: 15px;
+    
+}
+
+.district-name{ 
+    border-bottom-left-radius: 0 !important; 
+    border-bottom-right-radius: 0 !important;
 }
 
 .school-info{

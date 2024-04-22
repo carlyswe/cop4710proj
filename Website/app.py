@@ -54,6 +54,8 @@ def crimemap():
             SELECT 
                 AVG(Total_Arrests) as AvgTotal_Arrests,
                 AVG(Burglary) as AvgBurglary,
+                AVG(Arson) as AvgArson,
+                AVG(Bribery) as AvgBribery,
                 AVG(Larceny) as AvgLarceny,
                 AVG(Motor_Vehicle_Theft) as AvgMotor_Vehicle_Theft
             FROM CrimeStatistics
@@ -358,10 +360,11 @@ def house(listingID):
     county = str(county["County"])
 
     #get the district number
-    cur.execute("SELECT DistrictNumber, DistrictName FROM Counties WHERE DistrictName = %s", (county,))
+    cur.execute("SELECT * FROM Counties WHERE DistrictName = %s", (county,))
     districtinfo = cur.fetchone()
     districtnum = int(districtinfo["DistrictNumber"])
     districtname = str(districtinfo["DistrictName"])
+    districtgrade = str(districtinfo["Grade2022"])
 
     print(districtnum)
 
@@ -381,7 +384,7 @@ def house(listingID):
 
     #join statistics on county name
 
-    return render_template("house.html", houseinfo=houseinfo, schools=schools, districtname=districtname, crime=crime, path='/house'+listingID)
+    return render_template("house.html", houseinfo=houseinfo, schools=schools, districtgrade = districtgrade, districtname=districtname, crime=crime, path='/house'+listingID)
 
 
 @app.route('/editlisting/<listingID>', methods = ['POST', 'GET'])

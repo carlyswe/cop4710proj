@@ -22,7 +22,6 @@ def process_csv_file(file_path):
 
                     # Convert data types
                     beds = int(row['beds']) if row['beds'] else None
-                    status = row['status'] 
                     full_baths = int(row['full_baths']) if row['full_baths'] else None
                     half_baths = int(row['half_baths']) if row['half_baths'] else None
                     sqft = int(row['sqft']) if row['sqft'] else None
@@ -42,15 +41,15 @@ def process_csv_file(file_path):
                     # Insert home data into Homes table
                     query = """
                         INSERT INTO Homes (
-                            ZipCode, property_url, status, style, street, unit, city,
+                            ZipCode, property_url, style, street, unit, city,
                             beds, full_baths, half_baths, sqft, year_built, price, photo,
                             latitude, longitude
                         ) VALUES (
-                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
                         )
                     """
                     cursor.execute(query, (
-                        zip_code, row['status'], row['property_url'], row['style'], row['street'], row['unit'],
+                        zip_code, row['property_url'], row['style'], row['street'], row['unit'],
                         row['city'], beds, full_baths, half_baths, sqft, year_built, price,
                         row['primary_photo'], latitude, longitude
                     ))

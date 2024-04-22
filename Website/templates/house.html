@@ -32,9 +32,9 @@
 
                         <div class="house-info">
                         <div>
-                            <h2 class="price">${{ "{:,.2f}".format(houseinfo["price"]) }} </h2>
+                            <h2 class="price">${{ "{:,}".format(houseinfo["price"]) }} </h2>
                             <h2 class="address">{{houseinfo["street"]}} </h2>
-                            <h2 class="city">{{ houseinfo["city"] }}</h2>
+                            <h2 class="city-info">{{ houseinfo["city"] }}</h2>
                             <h2 class = "zipcode">{{ houseinfo["ZipCode"] }} </h2>
                         </div>
                         <div>
@@ -50,7 +50,7 @@
                             <h2 class="half-bath">half-bath</h2>
                         </div> 
                         <div>
-                            <h2 class="num-sqft">{{ "{:,}".format(houseinfo["sqft"]) }}</h2>
+                            <h2 class="num-sqft">{{ houseinfo["sqft"] }}</h2>
                             <h2 class="sqft">sqft</h2>
                         </div> 
                      </div>  
@@ -84,12 +84,16 @@
             
                     <div class="square-feet">
                         <ul>Square Feet</ul>
-                        <li>{{ "{:,}".format(houseinfo["sqft"]) }}</li>
+                        <li>{{ houseinfo["sqft"] }}</li>
                     </div>
 
                     <div class="other">
+                        <br>
                         <ul>Other</ul>
                         <li>Year Built: {{ houseinfo["year_built"] }}</li>
+                        <br>
+                        <ul>Listing ID</ul>
+                        <li>{{ houseinfo["listingID"] }}</li>
                     </div>
 
                     <div class="property">
@@ -124,13 +128,14 @@
                     <img src="/static/images/school.png" alt="school-img"/>
                     <div class="district-info">
                         <p>School District: </p>
-                        <p>{{ districtname }}</p>
+                        <p class="district-name">{{ districtname }}</p>
+                        <p class="district-grade">Grade: {{ districtgrade }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="crime-reports-header">
-                <p>{{ districtname }} Crime Data</p>
+                <p>District Crime Data</p>
             </div>
 
             <div class="crime-reports">
@@ -140,7 +145,7 @@
                 <div class="crime-container">   
                     <div class="crime-box">
                         <p class="box-text-1">Total Arrests</p>
-                        <p class="box-text-2"> {{ "{:.0f}".format(crime["Total_Arrests"]) }}</p>
+                        <p class="box-text-2"> {{ "{:,}".format(crime["Total_Arrests"]) }}</p>
                         <p class="box-text-3">(for all crimes)</p>
                     </div>
 
@@ -155,27 +160,27 @@
                         <div class="grid">
                             <div>
                                 <p>Total Arrests</p>
-                                <p> {{"{:.0f}".format(crime["Total_Arrests"]) }} </p>
+                                <p> {{"{:,}".format(crime["Total_Arrests"]) }} </p>
                             </div>
                             <div>
                                 <p>Manslaughter</p>
-                                <p>{{ "{:.0f}".format(crime["Manslaughter"]) }}</p>
+                                <p>{{ "{:,}".format(crime["Manslaughter"]) }}</p>
                             </div>
                             <div>
                                 <p>Assault</p>
-                                <p> {{ "{:.0f}".format(crime["Simple_Assault"]) }} </p>
+                                <p> {{ "{:,}".format(crime["Simple_Assault"]) }} </p>
                             </div>
                             <div>
                                 <p>Robbery</p>
-                                <p>{{ "{:.0f}".format(crime["Larceny"]) }}</p>
+                                <p>{{ "{:,}".format(crime["Larceny"]) }}</p>
                             </div>
                             <div>
                                 <p>Kidnapping</p>
-                                <p>{{ "{:.0f}".format(crime["Kidnap_Abduction"]) }}</p>
+                                <p>{{ "{:,}".format(crime["Kidnap_Abduction"]) }}</p>
                             </div>
                             <div>
                                 <p>Burglary</p>
-                                <p>{{ "{:.0f}".format(crime["Burglary"]) }}</p>
+                                <p>{{ "{:,}".format(crime["Burglary"]) }}</p>
                             </div>
                         </div>
                     </div>
