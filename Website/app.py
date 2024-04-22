@@ -155,14 +155,22 @@ def addlisting():
             vals = (numbed, numfullbaths, numhalfbaths, sqft, yearbuilt, street, unit, city, zipcode, price, photourl, longitude, latitude)
 
             cur.execute(query, vals)
+            con.commit()
 
             msg = "Home Added Successfully."
             #redirect to view it as a listing but need to pass listing id for buildable url
             #return redirect(/house, )
 
-            con.commit()
+
+            cur.execute("SELECT listingID FROM Homes ORDER BY listingID DESC LIMIT 1")
+
+
+            listingadded = cur.fetchone()
 
             con.close()
+
+            return redirect("/house/" + str(listingadded[0]))
+
 
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
