@@ -11,35 +11,53 @@ We accommodated for functional dependencies by dividing our original tables furt
 ### Schema 
 
 **Counties**(DistrictNumber, DistrictName, Grade2022)
+
 Primary Key = DistrictNumber
+
 Dependencies:  DistrictNumber -> DistrictName, Grade2022
   
 **Schools**(SchoolID, DistrictNumber, SchoolName, Grade2022)
+
 Primary Key = SchoolID
+
 Foreign Key = DistrictNumber REFERENCES Counties(DistrictNumber) 
+
 Dependencies: SchoolID -> DistrictNumber, SchoolName, Grade2022
  
 **CrimeStatistics**(statisticsID, totalCrimeIndex, Total_Arrests, Population, Burglary, Larceny, Motor_Vehicle_Theft, Manslaughter, Kidnap_Abduction, Arson, Simple_Assault, Drug_Arrest, Bribery, Embezzlement, Fraud, Counterfeit_Forgery, Extortion_Blackmail, Intimidation, Prostitution, NonForcible_Sex_Offenses, Stolen_Property, DUI, Destruction_Vandalism, Gambling, Weapons_Violations, Liquor_Law_Violations, Misc)
+
 Primary Key = statisticsID
+
 Dependencies: statisticsID -> totalCrimeIndex, Total_Arrests, Population, Burglary, Larceny, Motor_Vehicle_Theft, Manslaughter, Kidnap_Abduction, Arson, Simple_Assault, Drug_Arrest, Bribery, Embezzlement, Fraud, Counterfeit_Forgery, Extortion_Blackmail, Intimidation, Prostitution, NonForicble_Sex_Offenses, Stolen_Property, DUI, Destruction_Vandalism, Gambling, Weapons_Violations, Liquor_Law_Violations, Misc
  
 **Cities**(cityName, countyName, population)
+
 Primary Key = cityName
+
 Foreign Key = countyName REFERENCES Counties(DistrictName)
+
 Dependencies: cityName -> countyName, population
  
 **StatisticsOf**(DistrictNumber, statisticsID)  //lookup table
+
 Primary Key = DistrictNumber, statisticsID
+
 Foreign Key = DistrictNumber REFERENCES Counties(DistrictNumber), statisticsID REFERENCES CrimeStatistics(statisticsID)
+
 Dependencies: DistrictNumber -> statisticsID ; statisticsID -> DistrictNumber
  
 **Homes**(listingID, ZipCode, property_url, style, street, unit, city, beds, full_baths, half_baths, sqft, year_built, price, photo)
+
 Primary Key = listingID
+
 Foreign Key = ZipCode REFERENCES ZipCodes(ZipCode)
+
 Dependencies: listingID-> ZipCode, property_url, style, street, unit, city, beds, full_baths, half_baths, sqft, year_bult, price, photo
  
 **ZipCodes**(ZipCode, City, County) //lookup table
+
 Primary Key = ZipCode
+
 Dependencies: ZipCode -> City, County
 
 ## **Functionality Details**
