@@ -345,7 +345,7 @@
     padding-left: 15px;
 }
 
-.bed, .bath, .half-bath, .sqft, .address{
+.bed, .bath, .half-bath, .sqft, .address, .city-info{
     font-size: calc(0.7vw + 0.7vh + 1vmin);
     text-align:center;
     padding-right: 15px;
