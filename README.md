@@ -1,4 +1,4 @@
-# SafeHomes - Full Stack Web Application 
+# SafeHomes - Database Web Application 
 
 Our application aims to provide users with a convenient and concise way to shop for homes while considering factors that most real estate websites do not: the safety of the area the homes are located in and the quality of education within the houses’ associated school districts. We chose to produce this application because we wanted to create something useful and build upon the ideas of great applications such as Zillow, but also take it one step further to provide additional important information with our listings such as crime data. The key components to our project are listing houses, viewing houses and filtering based on school district, county safety data, and city, updating listings, deleting listings, looking at county-wide crime data, and searching for houses on our interactive map.
 
