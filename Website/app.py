@@ -38,7 +38,7 @@ def crimemap():
         # Fetch crime data for selected county
         cursor.execute("""
             SELECT 
-                Burglary, Larceny, Motor_Vehicle_Theft,
+                Total_Arrests, Burglary, Larceny, Motor_Vehicle_Theft,
                 Manslaughter, Kidnap_Abduction, Arson, Simple_Assault,
                 Drug_Arrest, Bribery, Embezzlement, Fraud,
                 Counterfeit_Forgery, Extortion_Blackmail, Intimidation,
@@ -54,10 +54,28 @@ def crimemap():
             SELECT 
                 AVG(Total_Arrests) as AvgTotal_Arrests,
                 AVG(Burglary) as AvgBurglary,
-                AVG(Arson) as AvgArson,
-                AVG(Bribery) as AvgBribery,
                 AVG(Larceny) as AvgLarceny,
-                AVG(Motor_Vehicle_Theft) as AvgMotor_Vehicle_Theft
+                AVG(Motor_Vehicle_Theft) as AvgMotor_Vehicle_Theft,
+                AVG(Manslaughter) as AvgManslaughter,
+                AVG(Kidnap_Abduction) as AvgKidnap_Abduction,
+                AVG(Arson) as AvgArson,
+                AVG(Simple_Assault) as AvgSimple_Assault, 
+                AVG(Drug_Arrest) as AvgDrug_Arrest, 
+                AVG(Bribery) as AvgBribery,
+                AVG(Embezzlement) as AvgEmbezzlement, 
+                AVG(Fraud) as AvgFraud, 
+                AVG(Counterfeit_Forgery) as AvgCounterfeit_Forgery, 
+                AVG(Extortion_Blackmail) as AvgExtortion_Blackmail, 
+                AVG(Intimidation) as AvgIntimidation, 
+                AVG(Prostitution) as AvgProstitution, 
+                AVG(NonForcible_Sex_Offenses) as AvgNonForcible_Sex_Offenses,
+                AVG(Stolen_Property) as AvgStolen_Property,
+                AVG(DUI) as AvgDUI,
+                AVG(Destruction_Vandalism) as AvgDestruction_Vandalism,
+                AVG(Gambling) as AvgGambling,
+                AVG(Weapons_Violations) as AvgWeapons_Violations,
+                AVG(Liquor_Law_Violations) as AvgLiquor_Law_Violations,
+                AVG(Misc) as AvgMisc     
             FROM CrimeStatistics
         """)
         avg_data = cursor.fetchone()
