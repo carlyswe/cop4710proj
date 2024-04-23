@@ -65,7 +65,7 @@
                     <tr>
                         <th>Category</th>
                         <th>Selected County</th>
-                        <th>Average</th>
+                        <th>State Average</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -162,7 +162,7 @@
             });
         }
 
-        function updateTable(countyData, avgData, countyName) {
+        function updateTable(countyData, avgData, countyName)  {
             var tableBody = document.querySelector('#crimeTable tbody');
             tableBody.innerHTML = '';
 
@@ -174,9 +174,9 @@
                     var avgCell = document.createElement('td');
 
                     categoryCell.textContent = category;
-                    countyCell.textContent = countyName + ': ' + countyData[category];
+                    countyCell.textContent = countyData[category];
                     avgCell.textContent = avgData['Avg' + category] || 'N/A';
-
+                     
                     row.appendChild(categoryCell);
                     row.appendChild(countyCell);
                     row.appendChild(avgCell);

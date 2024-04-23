@@ -49,7 +49,7 @@ def crimemap():
             WHERE statisticsID = %s
         """, (selected_county,))
         selected_county_data = cursor.fetchone()
-
+       
         # Fetch county name for selected district number
         cursor.execute("""
             SELECT DistrictName
