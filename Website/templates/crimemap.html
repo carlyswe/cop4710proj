@@ -44,7 +44,7 @@
                 <select class="county-select" name="county">
                     <option value="">Select a county</option>
                     {% for county in counties %}
-                    <option value="{{ county }}">{{ county }}</option>
+                        <option value="{{ county['DistrictNumber'] }}">{{ county['DistrictName'] }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -65,7 +65,7 @@
                     <tr>
                         <th>Category</th>
                         <th>Selected County</th>
-                        <th>State Average</th>
+                        <th>Average</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,26 +93,26 @@
             });
         });
 
-        function fetchCountyData(county) {
+        function fetchCountyData(districtNumber) {
             fetch('/crimemap', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ county: county })
+                body: JSON.stringify({ districtNumber: districtNumber })
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Data from server:', data);
-                updateCharts(data.selected_county_data, data.avg_data);
-                updateTable(data.selected_county_data, data.avg_data);
+                updateCharts(data.selected_county_data, data.avg_data, data.selected_county_name);
+                updateTable(data.selected_county_data, data.avg_data, data.selected_county_name);
             })
             .catch(error => {
                 console.error('Error fetching county data:', error);
             });
         }
 
-        function updateCharts(countyData, avgData) {
+        function updateCharts(countyData, avgData, countyName) {
             var ctxPie = document.getElementById('crimeTypePieChart').getContext('2d');
             var ctxBar = document.getElementById('crimeRateBarChart').getContext('2d');
 
@@ -127,7 +127,7 @@
             var barData = {
                 labels: Object.keys(countyData),
                 datasets: [{
-                    label: 'Selected County',
+                    label: countyName,
                     data: Object.values(countyData),
                     backgroundColor: 'rgba(75, 192, 192, 0.6)'
                 }, {
@@ -162,7 +162,7 @@
             });
         }
 
-        function updateTable(countyData, avgData) {
+        function updateTable(countyData, avgData, countyName) {
             var tableBody = document.querySelector('#crimeTable tbody');
             tableBody.innerHTML = '';
 
@@ -174,9 +174,8 @@
                     var avgCell = document.createElement('td');
 
                     categoryCell.textContent = category;
-                    countyCell.textContent = countyData[category];
-                    avgCell.textContent = avgData['Avg' + category]|| 'N/A';
-                     
+                    countyCell.textContent = countyName + ': ' + countyData[category];
+                    avgCell.textContent = avgData['Avg' + category] || 'N/A';
 
                     row.appendChild(categoryCell);
                     row.appendChild(countyCell);

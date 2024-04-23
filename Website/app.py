@@ -27,14 +27,14 @@ def database():
 def crimemap():
     db = database()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT DistrictName FROM Counties")
+    cursor.execute("SELECT DistrictName, DistrictNumber FROM Counties")
     counties = cursor.fetchall()
 
     selected_county_data = {}
     avg_data = {}
     if request.method == 'POST':
-        selected_county = request.json['county']
-        print(f"Selected county: {selected_county}")
+        selected_county = request.json['districtNumber']
+        print(f"Selected county district number: {selected_county}")
         # Fetch crime data for selected county
         cursor.execute("""
             SELECT 
@@ -46,9 +46,18 @@ def crimemap():
                 DUI, Destruction_Vandalism, Gambling, Weapons_Violations,
                 Liquor_Law_Violations, Misc
             FROM CrimeStatistics
-            WHERE CountyName = %s
+            WHERE statisticsID = %s
         """, (selected_county,))
         selected_county_data = cursor.fetchone()
+
+        # Fetch county name for selected district number
+        cursor.execute("""
+            SELECT DistrictName
+            FROM Counties
+            WHERE DistrictNumber = %s
+        """, (selected_county,))
+        selected_county_name = cursor.fetchone()['DistrictName']
+
         # Fetch average data for comparison
         cursor.execute("""
             SELECT 
@@ -81,17 +90,19 @@ def crimemap():
         avg_data = cursor.fetchone()
 
         print("Selected county data:", selected_county_data)
+        print("Selected county name:", selected_county_name)
         print("Average data:", avg_data)
 
         return jsonify({
             'selected_county_data': selected_county_data,
+            'selected_county_name': selected_county_name,
             'avg_data': avg_data
         })
 
     cursor.close()
     db.close()
 
-    return render_template('crimemap.html', counties=[county['DistrictName'] for county in counties])
+    return render_template('crimemap.html', counties=counties)
 
 #delete listing function
 @app.route('/deletelisting', methods = ['POST', 'GET'])
